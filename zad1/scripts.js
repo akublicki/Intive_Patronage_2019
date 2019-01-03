@@ -57,8 +57,8 @@ const showHeroes = () => {
             +    '<div class="hero__price">Cena wynajmu: '+heroes[hero].price+'zł/h</div>'
             +'</div>'
     }
-    document.getElementsByTagName('main')[0].innerHTML = template;
-}
+    document.getElementsByClassName('heroes')[0].innerHTML = template;
+};
 
 const saveToLocalStorage = () => {
     localStorage.setItem("heroes",JSON.stringify(heroes));
@@ -67,10 +67,26 @@ const saveToLocalStorage = () => {
 const loadFromLocalStorage = () => {
     let heroesFromLocalStorage = localStorage.getItem("heroes");
     heroes = JSON.parse(heroesFromLocalStorage);
-    console.log(heroes);
-}
+};
 
 const openModal = (heroName) => {
+    let template = '';
+    template = ''
+        +'<div class="modal__close" onclick = "closeModal()">x</div>'
+        +    '<div class="modal__image">'
+        +        '<img src="'+heroes[heroName].image+'">'
+        +    '</div>'
+        +    '<div class="modal__information">'
+        +       '<h2 class="modal__name">I'+"'"+'M THE '+heroes[heroName].name.toUpperCase()+'</h2>'
+        +       '<div class="modal__description">'+heroes[heroName].description+'</div>'
+        +       '<div class="modal__price">WYNAJEM: '+heroes[heroName].price+' ZŁ/H</div>';
+        if(heroes[heroName].isAvailable){
+            template += '<button class="modal__submit" onclick="addToBasket(' + "'" + heroes[heroName].name + "'" + ')">DODAJ DO KOSZYKA</button>';
+        }else{
+            template += '<button class="modal__submit modal__submit--disabled" disabled)">HEROES ZAJĘTY</button>';
+        };
+        template += '</div>';
+    document.getElementsByClassName("modal__container")[0].innerHTML = template;
     modal.style.display = 'block';
 };
 
@@ -78,13 +94,47 @@ const closeModal = () => {
     modal.style.display = 'none';
 };
 
-const addToBasket = heroName => {
-//   heroes[heroName].isAvailable = false;
+const addToBasket = (heroName) => {
+heroes[heroName].isAvailable = false;
+saveToLocalStorage();
   closeModal();
+  location.reload();
 };
+
+const showBasket = () => {
+    let price = 0;
+    let template = '';
+    for (hero in heroes) {
+        if (!heroes[hero].isAvailable) {
+            template += ''
+                + '<div class="basket__hero">'
+                +   '<div class="basket__hero--width40">'
+                +       '<img src=' + heroes[hero].image + ' class="basket__heroImage">'
+                +   '</div>'
+                +   '<div class="basket__hero--width60">'
+                +       '<span>' + heroes[hero].name + '</span>'
+                +       '<p class="basket__heroDescription">' + heroes[hero].description + '</p>'
+                +       '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' + "'" + heroes[hero].name + "'" + ')">USUŃ Z KOSZYKA | x</button>'
+                +   '</div>'
+                + '</div>';
+            price += Number(heroes[hero].price);
+        };
+    };
+    if (price != 0) {
+        document.getElementsByClassName("basket__heroes")[0].innerHTML = template;
+        document.getElementsByClassName("basket__price--colorRed")[0].innerHTML = price + 'zł';
+    };
+};
+
+const deleteFromBasket = (heroName) => {
+    heroes[heroName].isAvailable = true;
+    saveToLocalStorage();
+    location.reload();
+}
 
 loadFromLocalStorage();
 if(heroes){
     showHeroes();
+    showBasket();
 }else{heroes = {};
 };
