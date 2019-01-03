@@ -131,6 +131,49 @@ main {
     width: 100%;
 }
 
+.addHero{
+    width: 60%;
+    margin: 5%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 5px 5px 5px gray;
+}
+
+.addHero__input{
+    /* display: block; */
+    margin: 5% auto;
+    border: 0;
+    border-bottom: 2px grey solid;
+    color: grey;
+    width: 60%;
+}
+
+.addHero__input::placeholder{
+    color: grey;
+}
+
+.addHero__input:focus{
+    outline: none;
+}
+
+.addHero__description{
+  font-family: inherit;
+}
+
+.addHero__submit{
+    color: white;
+    background: blue;
+    border: 1px blue solid;
+    outline: 0;
+    width: 25%;
+    height: 5vh;
+    align-self: center;
+    box-shadow: 0 4px 4px 0 gray;
+}
+
 .modal {
   position: absolute;
   top: 0;

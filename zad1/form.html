@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <img src="images/home-slide01.jpg" class="header__image" />
+      <a href="index.html"><img src="images/logo.png" class="header__logo"/></a>
+      <ul class="header__navigation">
+        <a href="form.html"> <li class="navigation__link">DODAJ HEROSA</li> </a>
+        <li class="navigation__link">EDYTUJ HEROSA</li>
+        <li class="navigation__link">USUŃ HEROSA</li>
+        <li class="navigation__link">WYCZYŚĆ BAZĘ</li>
+        <li class=" navigation__link navigation__link--noneBorder">
+          WCZYTAJ HEROSÓW
+        </li>
+      </ul>
+    </header>
+    <main>
+      <form class="addHero">
+          <h2>Dodaj Herosa</h2>
+        <input
+          type="text"
+          placeholder="Nazwa Bohatera"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Nazwa Bohatera'"
+          class="addHero__input addHero__name"
+        />
+        <input
+          type="text"
+          placeholder="Adres/nazwa zdjęcia"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Adres/nazwa zdjęcia'"
+          class="addHero__input addHero__image"
+        />
+        <input
+          type="number"
+          placeholder="Cena wynajmu /h"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Cena wynajmu /h'"
+          class="addHero__input addHero__price"
+        />
+        <textarea
+          type="text"
+          placeholder="Opis Bohatera"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Opis Bohatera'"
+          class="addHero__input addHero__description"
+        ></textarea>
+        <button type="button" class="addHero__submit">Submit</button>
+      </form>
+    </main>
+    <footer class="footer">
+      Need a Hero - Pure JS/CSS Aplikacja do ćwiczenia nabytej wiedzy o
+      JavaScript
+    </footer>
+    <div class="modal">
+      <div class="modal__container">
+        <div class="modal__close">&times;</div>
+        Tekst modala
+      </div>
+    </div>
+    <script src="scripts.js" async defer></script>
+  </body>
+</html>
