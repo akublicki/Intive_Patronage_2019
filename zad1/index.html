@@ -90,7 +90,7 @@
         <div class="hero__name">Name</div>
         <div class="hero__price">Cena wynajmu: 25000zł/h</div>
     </div>
-    <div class="hero">
+    <div class="hero" onclick="openModal('batman')">
         <img src="https://www.sideshowtoy.com/wp-content/uploads/2017/11/dc-comics-justice-league-batman-statue-prime1-studio-feature-903246-1.jpg"
             class="hero__image">
         <div class="hero__name">Name</div>
@@ -115,8 +115,16 @@
     </footer>
     <div class="modal">
       <div class="modal__container">
-        <div class="modal__close">&times;</div>
-        Tekst modala
+        <div class="modal__close" onclick="closeModal()">&times;</div>
+        <div class="modal__image">
+            <img src="https://www.sideshowtoy.com/wp-content/uploads/2017/11/dc-comics-justice-league-batman-statue-prime1-studio-feature-903246-1.jpg">
+        </div>
+        <div class="modal__information">
+            <h2 class="modal__name">I'M THE BATMAN</h2>
+            <div class="modal__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fuga magni laborum ratione, reprehenderit ea voluptatum rem aperiam, quasi voluptas aspernatur autem quod ad explicabo dicta molestiae consequatur, quibusdam voluptatem! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut maiores recusandae, impedit architecto pariatur culpa optio quisquam labore quod iusto, maxime nobis suscipit, esse cupiditate illo neque commodi vitae. Dignissimos?</div>
+            <div class="modal__price">WYNAJEM: ZŁ/H </div>
+            <button class="modal__submit" onclick="addToBasket('Batman')">DODAJ DO KOSZYKA</button>
+        </div>
       </div>
     </div>
     <script src="scripts.js" async defer></script>
