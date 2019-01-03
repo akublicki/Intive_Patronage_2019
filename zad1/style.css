@@ -256,6 +256,20 @@ main {
 }
 
 @media screen and (max-width: 760px) {
+  .header__navigation {
+    background:rgba(0, 0, 0, 0.8);
+    width: 100%;
+    margin: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .navigation__link {
+    display: block;
+    font-size: 1.8em;
+    border: 0;
+    margin: 3% 0;
+}
   .hero {
     width: 100%;
   }
