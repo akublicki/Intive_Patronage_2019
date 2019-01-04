@@ -1,6 +1,11 @@
 const modal = document.getElementsByClassName('modal')[0];
 let heroes = {};
 
+const openMobileNav = x => {
+  x.classList.toggle("change");
+    document.getElementsByClassName('header__navigation')[0].classList.toggle("header__navigation--show");
+};
+
 const openAddHero = () => {
     document.getElementsByTagName('main')[0].innerHTML = ''
     +    '<form class="addHero" >'

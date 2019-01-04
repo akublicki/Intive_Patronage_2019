@@ -25,6 +25,33 @@ body {
   top: 0;
 }
 
+.mobileNavigation {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+}
+
+.mobileNavigation__bar1, .mobileNavigation__bar2, .mobileNavigation__bar3 {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.change .mobileNavigation__bar1 {
+  transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .mobileNavigation__bar2 {opacity: 0;}
+
+.change .mobileNavigation__bar3 {
+  transform: rotate(45deg) translate(-8px, -8px);
+}
+
 .header__navigation {
   position: absolute;
   right: 10px;
@@ -35,8 +62,9 @@ body {
 .navigation__link {
   display: inline-block;
   color: white;
-  padding: 0 10px;
+  padding: 0 8px;
   border-right: 1px white solid;
+  cursor: pointer;
 }
 
 .navigation__link--noneBorder {
@@ -51,7 +79,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: blue;
+  background: #261d52;
   color: white;
 }
 
@@ -81,7 +109,7 @@ main {
 }
 
 .basket__price--colorRed {
-  color: red;
+  color: #CB0A05;
 }
 
 .basket__heroes {
@@ -119,7 +147,7 @@ main {
 }
 
 .basket__buttonDelete {
-  background: red;
+  background: #CB0A05;
   color: white;
   height: 2rem;
 }
@@ -175,8 +203,8 @@ main {
 
 .addHero__submit{
     color: white;
-    background: blue;
-    border: 1px blue solid;
+    background: #5F92C9;
+    border: 1px #5F92C9 solid;
     outline: 0;
     width: 25%;
     height: 5vh;
@@ -233,8 +261,8 @@ main {
 
 .modal__submit {
     color: white;
-    background: green;
-    border: 1px green solid;
+    background: #00AA54;
+    border: 1px #00AA54 solid;
     outline: 0;
     height: 5vh;
     align-self: center;
@@ -242,8 +270,8 @@ main {
 }
 
 .modal__submit--disabled {
-    background: red;
-    border: 1px red solid;
+    background: #CB0A05;
+    border: 1px #CB0A05 solid;
 }
 
 .modal__close {
@@ -256,12 +284,27 @@ main {
 }
 
 @media screen and (max-width: 760px) {
+    .header__logo{
+    width: 30%;
+  }
+
+  .mobileNavigation {
+    display: inline-block;
+  }
+
   .header__navigation {
     background:rgba(0, 0, 0, 0.8);
     width: 100%;
     margin: 0;
     right: 0;
     text-align: center;
+    top: -350px;
+    transition: 1.2s;
+  }
+
+  .header__navigation--show {
+    top: 0;
+    transition: 1.2s;
   }
 
   .navigation__link {
@@ -280,9 +323,18 @@ main {
 }
 
 @media screen and (min-width: 761px) and (max-width: 1024px) {
+  .header__logo{
+    width: 30%;
+  }
+
   .hero {
     width: 48%;
   }
+
+  .navigation__link {
+    padding: 0 6px;
+    font-size: 0.8em;
+}
 
   .basket__hero {
     width: 50%;
