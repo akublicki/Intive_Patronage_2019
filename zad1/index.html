@@ -21,7 +21,12 @@
 
   <body>
     <header class="header">
-      <img src="images/home-slide01.jpg" class="header__image" />
+      <picture>
+        <source media="(max-width: 760px)" srcset="images/home-slide761.jpg" class="header__image">
+        <source media="(min-width: 761px) and (max-width: 1024px)" srcset="images/home-slide1024.jpg" class="header__image">
+        <img src="images/home-slide01.jpg" class="header__image" />
+      </picture>
+
       <div class="mobileNavigation" onclick="openMobileNav(this)">
         <div class="mobileNavigation__bar1"></div>
         <div class="mobileNavigation__bar2"></div>

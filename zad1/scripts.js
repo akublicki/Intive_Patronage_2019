@@ -88,7 +88,7 @@ const openModal = (heroName) => {
         if(heroes[heroName].isAvailable){
             template += '<button class="modal__submit" onclick="addToBasket(' + "'" + heroes[heroName].name + "'" + ')">DODAJ DO KOSZYKA</button>';
         }else{
-            template += '<button class="modal__submit modal__submit--disabled" disabled)">HEROES ZAJĘTY</button>';
+            template += '<button class="modal__submit modal__submit--disabled" disabled)">HERO ZAJĘTY</button>';
         };
         template += '</div>';
     document.getElementsByClassName("modal__container")[0].innerHTML = template;
