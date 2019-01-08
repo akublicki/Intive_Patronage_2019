@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header class="header">
+      <picture>
+        <source media="(max-width: 760px)" srcset="images/home-slide761.jpg" class="header__image">
+        <source media="(min-width: 761px) and (max-width: 1024px)" srcset="images/home-slide1024.jpg" class="header__image">
+        <img src="images/home-slide01.jpg" class="header__image" />
+      </picture>
+
+      <div class="mobileNavigation" onclick="openMobileNav(this)">
+        <div class="mobileNavigation__bar1"></div>
+        <div class="mobileNavigation__bar2"></div>
+        <div class="mobileNavigation__bar3"></div>
+      </div>
+      <a href="index.html"><img src="images/logo.png" class="header__logo"/></a>
+      <ul class="header__navigation">
+        <li class="navigation__link" onclick="openAddHero()">DODAJ HEROSA</li>
+        <li class="navigation__link">EDYTUJ HEROSA</li>
+        <li class="navigation__link">USUŃ HEROSA</li>
+        <li class="navigation__link">WYCZYŚĆ BAZĘ</li>
+        <li class="navigation__link navigation__link--noneBorder">
+          WCZYTAJ HEROSÓW
+        </li>
+      </ul>
+    </header>
+    <main>
+      <div class="basket">
+        <div class="basket__label">
+          <span class="basket__title">Koszyk &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+          <span class="basket__price"
+            >Do zapłaty: <span class="basket__price--colorRed">0,00zł</span>
+          </span>
+        </div>
+        <div class="basket__heroes">
+            <span class="basket__empty">Twój koszyk jest pusty.</span>
+        </div>
+      </div>
+      <div class="heroes">
+    </div>
+    </main>
+    <footer class="footer">
+      Need a Hero - Pure JS/CSS Aplikacja do ćwiczenia nabytej wiedzy o
+      JavaScript
+    </footer>
+    <div class="modal">
+      <div class="modal__container">
+      </div>
+    </div>
+    <script src="scripts.js" async defer></script>
+  </body>
+</html>
