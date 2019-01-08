@@ -52,6 +52,33 @@ const addHero = () => {
     }
 };
 
+const openEditHero = () => {
+    document.getElementsByTagName('main')[0].innerHTML = ''
+        + '<form class="editHero">'
+        + '<h2>Edytuj Herosa</h2>'
+        + '<label class="editHero__label"> Wybierz istniejącego Heroesa </label>'
+        + '<select class="editHero__select">'
+        + '<option disabled selected>--- WYBIERZ ---</option>'
+        + '<option value="Batman">Batman</option>'
+        + '<option value="Superman">Superman</option>'
+        + '<option value="Spider-man">Spider-man</option>'
+        + '<option value="Harry Potter">Harry Potter</option>'
+        + '<option value="Spangebob">Spangebob</option>'
+        + '</select>'
+        + '<label class="editHero__label">Adres/nazwa zdjęcia</label>'
+        + '<input type="text" class="editHero__input editHero__image" />'
+        + '<label class="editHero__label">Cena wynajmu /h</label>'
+        + '<input type="number" class="editHero__input editHero__price" />'
+        + '<label class="editHero__label">Opis Bohatera</label>'
+        + '<textarea type="text" class="editHero__input editHero__description"></textarea>'
+        + '<button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>'
+        + '</form>';
+};
+
+const editHero = () => {
+
+};
+
 const showHeroes = () => {
     let template = '';
     for(hero in heroes){
