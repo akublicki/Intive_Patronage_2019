@@ -79,6 +79,20 @@ const editHero = () => {
 
 };
 
+const deleteHero = () => {
+    document.getElementsByTagName('main')[0].innerHTML = ''
+    +'<form class="deleteHero">'
+    +    '<h2>Usuń Herosa :-(</h2>'
+    +    '<label class="deleteHero__label"> Wybierz istniejącego Heroesa </label>'
+    +    '<select class="deleteHero__select">'
+    +        '<option disabled selected>--- WYBIERZ ---</option>'
+    +    '</select>'
+    +    '<button type="button" class="deleteHero__submit">Usuń</button>'
+    +'</form>';
+        // <option value="Batman">Batman</option>
+        // <option value="Superman">Superman</option>
+};
+
 const showHeroes = () => {
     let template = '';
     for(hero in heroes){
