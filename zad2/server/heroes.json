@@ -13,13 +13,6 @@
       "image": "sup.png",
       "price": "1200",
       "isAvailable": true
-    },
-    {
-      "name": "Minion",
-      "description": "minimini",
-      "image": "minion.jpg",
-      "price": "0.50",
-      "isAvailable": true
     }
   ]
 }
