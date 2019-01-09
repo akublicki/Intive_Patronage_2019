@@ -35,19 +35,21 @@ const openAddHero = () => {
 };
 
 const addHero = () => {
+    let url = "http://localhost:3000/heroes";
     let addHeroName = document.getElementsByClassName("addHero__name")[0].value;
     let addHeroImage = document.getElementsByClassName("addHero__image")[0].value;
     let addHeroPrice = document.getElementsByClassName("addHero__price")[0].value;
     let addHeroDescription = document.getElementsByClassName("addHero__description")[0].value;
     if(addHeroName){
-        heroes[addHeroName] = {
-            name: addHeroName,
-            image: addHeroImage,
-            description: addHeroDescription,
-            price: addHeroPrice,
-            isAvailable: true
-        };
-        saveToLocalStorage();
+        let hero = {name: addHeroName, description: addHeroDescription, image: addHeroImage, price: addHeroPrice, isAvailable: true};
+
+        fetch(url, {
+          method: "POST",
+          body: JSON.stringify(hero),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
         location.reload();
     }
 };
@@ -79,7 +81,7 @@ const editHero = () => {
 
 };
 
-const deleteHero = () => {
+const openDeleteHero = () => {
     document.getElementsByTagName('main')[0].innerHTML = ''
     +'<form class="deleteHero">'
     +    '<h2>Usuń Herosa :-(</h2>'
