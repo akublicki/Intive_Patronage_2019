@@ -13,6 +13,13 @@
       "image": "sup.png",
       "price": "1200",
       "isAvailable": true
+    },
+    {
+      "name": "Spangebob",
+      "description": "cos tam\no nim \ntrzeba",
+      "image": "https://i.pinimg.com/originals/df/f4/76/dff476e668e295d60ed58a9d6011d799.jpg",
+      "price": "5",
+      "isAvailable": true
     }
   ]
 }

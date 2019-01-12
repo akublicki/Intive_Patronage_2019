@@ -63,7 +63,8 @@ const addHero = () => {
 const openEditHero = () => {
   let template = "";
   let templateHeroes = "";
-  fetch("http://localhost:3000/heroes")
+  let url = "http://localhost:3000/heroes";;
+  fetch(url)
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
@@ -104,13 +105,27 @@ const changeHero = () => {
  };
 
 const editHero = () => {
+  let element = document.getElementsByClassName("editHero__select")[0];
+  let heroName = element.options[element.selectedIndex].value;
+  let url = "http://localhost:3000/heroes/" + heroName;
+  let hero = {
+    description: document.getElementsByClassName("editHero__input editHero__description")[0].value,
+    image: document.getElementsByClassName("editHero__input editHero__image")[0].value,
+    price: document.getElementsByClassName("editHero__input editHero__price")[0].value
+  };
+  fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(hero)
+    // headers: {"Content-Type": "application/json"}
+  });
   location.reload();
 };
 
 const openDeleteHero = () => {
   let template = "";
   let templateHeroes = "";
-  fetch("http://localhost:3000/heroes")
+  let url = "http://localhost:3000/heroes";
+  fetch(url)
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
@@ -142,27 +157,31 @@ const deleteHero = () => {
 };
 
 const showHeroes = () => {
-  let template = "";
-  for (hero in heroes) {
-    template +=
-      "" +
-      '<div class="hero" onclick="openModal(' +
-      "'" +
-      heroes[hero].name +
-      "'" +
-      ')"> ' +
-      '<img src="' +
-      heroes[hero].image +
-      '" class="hero__image">' +
-      '<div class="hero__name">' +
-      heroes[hero].name +
-      "</div>" +
-      '<div class="hero__price">Cena wynajmu: ' +
-      heroes[hero].price +
-      "zł/h</div>" +
-      "</div>";
-  }
-  document.getElementsByClassName("heroes")[0].innerHTML = template;
+  fetch("http://localhost:3000/heroes")
+    .then(response => response.json())
+    .then(heroes => {
+      let template = "";
+      for (hero in heroes) {
+        template +=
+          "" +
+          '<div class="hero" onclick="openModal(' +
+          "'" +
+          heroes[hero].name +
+          "'" +
+          ')"> ' +
+          '<img src="' +
+          heroes[hero].image +
+          '" class="hero__image">' +
+          '<div class="hero__name">' +
+          heroes[hero].name +
+          "</div>" +
+          '<div class="hero__price">Cena wynajmu: ' +
+          heroes[hero].price +
+          "zł/h</div>" +
+          "</div>";
+      }
+      document.getElementsByClassName("heroes")[0].innerHTML = template;
+    });
 };
 
 const saveToLocalStorage = () => {
