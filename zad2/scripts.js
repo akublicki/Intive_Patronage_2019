@@ -8,6 +8,22 @@ const openMobileNav = x => {
     .classList.toggle("header__navigation--show");
 };
 
+const showLoader = () => {
+  document.getElementsByClassName("loader")[0].style.display = "block";
+};
+
+const hideLoader = () => {
+  document.getElementsByClassName("loader")[0].style.display = "none";
+};
+
+const showMain = () => {
+  document.getElementsByTagName("main")[0].style.display = "block";
+};
+
+const hideMain = () => {
+  document.getElementsByTagName("main")[0].style.display = "none";
+};
+
 const openAddHero = () => {
   document.getElementsByTagName("main")[0].innerHTML =
     "" +
