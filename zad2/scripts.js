@@ -156,6 +156,17 @@ const deleteHero = () => {
     location.reload();
 };
 
+const openDeleteHeroes = () => {
+  let url = "http://localhost:3000/heroes/";
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  location.reload();
+};
+
 const showHeroes = () => {
   fetch("http://localhost:3000/heroes")
     .then(response => response.json())

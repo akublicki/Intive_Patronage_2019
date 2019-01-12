@@ -1,24 +1,31 @@
 {
   "heroes": [
     {
-      "name": "Batman",
-      "description": "To jest Batman",
-      "image": "Batman.jpg",
+      "name": "Spongebob",
+      "description": "Pan gąbka",
+      "image": "https://i.pinimg.com/originals/df/f4/76/dff476e668e295d60ed58a9d6011d799.jpg",
+      "price": "5",
+      "isAvailable": true
+    },
+    {
+      "name": "Papa Smerf",
+      "description": "Ojciec wszystkich Smerfów",
+      "image": "https://i.ytimg.com/vi/40Lw8zA9zAU/hqdefault.jpg",
       "price": "500",
       "isAvailable": true
     },
     {
-      "name": "Superman",
-      "description": "Clark Kent",
-      "image": "sup.png",
-      "price": "1200",
+      "name": "Punisher",
+      "description": "Punisher",
+      "image": "https://m.media-amazon.com/images/M/MV5BMjI5NjcwMTQxMV5BMl5BanBnXkFtZTcwODg5ODkwNQ@@._V1_.jpg",
+      "price": "999",
       "isAvailable": true
     },
     {
-      "name": "Spangebob",
-      "description": "cos tam\no nim \ntrzeba",
-      "image": "https://i.pinimg.com/originals/df/f4/76/dff476e668e295d60ed58a9d6011d799.jpg",
-      "price": "5",
+      "name": "Świnka Peppa",
+      "description": "Różowa świnka",
+      "image": "https://www.miniminiplus.pl/img/postacie/peppa.png",
+      "price": "2",
       "isAvailable": true
     }
   ]
