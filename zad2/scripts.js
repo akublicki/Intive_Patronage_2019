@@ -40,17 +40,12 @@ const openAddHero = () => {
 const addHero = () => {
   let url = "http://localhost:3000/heroes";
   let addHeroName = document.getElementsByClassName("addHero__name")[0].value;
-  let addHeroImage = document.getElementsByClassName("addHero__image")[0].value;
-  let addHeroPrice = document.getElementsByClassName("addHero__price")[0].value;
-  let addHeroDescription = document.getElementsByClassName(
-    "addHero__description"
-  )[0].value;
   if (addHeroName) {
     let hero = {
       name: addHeroName,
-      description: addHeroDescription,
-      image: addHeroImage,
-      price: addHeroPrice,
+      description: document.getElementsByClassName("addHero__description")[0].value,
+      image: document.getElementsByClassName("addHero__image")[0].value,
+      price: document.getElementsByClassName("addHero__price")[0].value,
       isAvailable: true
     };
 
@@ -66,39 +61,60 @@ const addHero = () => {
 };
 
 const openEditHero = () => {
-  document.getElementsByTagName("main")[0].innerHTML =
-    "" +
-    '<form class="editHero">' +
-    "<h2>Edytuj Herosa</h2>" +
-    '<label class="editHero__label"> Wybierz istniejącego Heroesa </label>' +
-    '<select class="editHero__select">' +
-    "<option disabled selected>--- WYBIERZ ---</option>" +
-    '<option value="Batman">Batman</option>' +
-    '<option value="Superman">Superman</option>' +
-    '<option value="Spider-man">Spider-man</option>' +
-    '<option value="Harry Potter">Harry Potter</option>' +
-    '<option value="Spangebob">Spangebob</option>' +
-    "</select>" +
-    '<label class="editHero__label">Adres/nazwa zdjęcia</label>' +
-    '<input type="text" class="editHero__input editHero__image" />' +
-    '<label class="editHero__label">Cena wynajmu /h</label>' +
-    '<input type="number" class="editHero__input editHero__price" />' +
-    '<label class="editHero__label">Opis Bohatera</label>' +
-    '<textarea type="text" class="editHero__input editHero__description"></textarea>' +
-    '<button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>' +
-    "</form>";
+  let template = "";
+  let templateHeroes = "";
+  fetch("http://localhost:3000/heroes")
+    .then(response => response.json())
+    .then(heroes => {
+      for (hero in heroes) {
+        templateHeroes += '<option value="' + heroes[hero].name + '">' + heroes[hero].name + "</option>";
+      }
+      template = "" +
+        '<form class="editHero">' +
+        "<h2>Edytuj Herosa</h2>" +
+        '<label class="editHero__label"> Wybierz istniejącego Heroesa </label>' +
+        '<select class="editHero__select" onchange="changeHero()">' +
+        "<option disabled selected>--- WYBIERZ ---</option>";
+      template += templateHeroes;
+      template += "" +
+        "</select>" +
+        '<label class="editHero__label">Adres/nazwa zdjęcia</label>' +
+        '<input type="text" class="editHero__input editHero__image" />' +
+        '<label class="editHero__label">Cena wynajmu /h</label>' +
+        '<input type="number" class="editHero__input editHero__price" />' +
+        '<label class="editHero__label">Opis Bohatera</label>' +
+        '<textarea type="text" class="editHero__input editHero__description"></textarea>' +
+        '<button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>' +
+        "</form>";
+      document.getElementsByTagName("main")[0].innerHTML = template;
+    });
 };
 
-const editHero = () => {};
+const changeHero = () => {
+  let element = document.getElementsByClassName("editHero__select")[0];
+  let heroName = element.options[element.selectedIndex].value;
+  let url = "http://localhost:3000/heroes/" + heroName;
+  fetch(url)
+    .then(response => response.json())
+    .then(hero => {
+      document.getElementsByClassName("editHero__input editHero__image")[0].value = hero.image;
+      document.getElementsByClassName("editHero__input editHero__price")[0].value = hero.price;
+      document.getElementsByClassName("editHero__input editHero__description")[0].value = hero.description;
+    });
+ };
+
+const editHero = () => {
+  location.reload();
+};
 
 const openDeleteHero = () => {
   let template = "";
   let templateHeroes = "";
   fetch("http://localhost:3000/heroes")
     .then(response => response.json())
-    .then(myJson => {
-      for (hero in myJson) {
-        templateHeroes +='<option value="' + myJson[hero].name + '">' + myJson[hero].name + "</option>";
+    .then(heroes => {
+      for (hero in heroes) {
+        templateHeroes +='<option value="' + heroes[hero].name + '">' + heroes[hero].name + "</option>";
       }
       template =
         "" +
@@ -110,8 +126,6 @@ const openDeleteHero = () => {
       template += templateHeroes;
       template += "" + "</select>" + '<button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>' + "</form>";
       document.getElementsByTagName("main")[0].innerHTML = template;
-      // <option value="Batman">Batman</option>
-      // <option value="Superman">Superman</option>
     });
 };
 
