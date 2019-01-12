@@ -194,41 +194,46 @@ const loadFromLocalStorage = () => {
 };
 
 const openModal = heroName => {
-  let template = "";
-  template =
-    "" +
-    '<div class="modal__close" onclick = "closeModal()">x</div>' +
-    '<div class="modal__image">' +
-    '<img src="' +
-    heroes[heroName].image +
-    '">' +
-    "</div>" +
-    '<div class="modal__information">' +
-    '<h2 class="modal__name">I' +
-    "'" +
-    "M THE " +
-    heroes[heroName].name.toUpperCase() +
-    "</h2>" +
-    '<div class="modal__description">' +
-    heroes[heroName].description +
-    "</div>" +
-    '<div class="modal__price">WYNAJEM: ' +
-    heroes[heroName].price +
-    " ZŁ/H</div>";
-  if (heroes[heroName].isAvailable) {
-    template +=
-      '<button class="modal__submit" onclick="addToBasket(' +
-      "'" +
-      heroes[heroName].name +
-      "'" +
-      ')">DODAJ DO KOSZYKA</button>';
-  } else {
-    template +=
-      '<button class="modal__submit modal__submit--disabled" disabled)">HERO ZAJĘTY</button>';
-  }
-  template += "</div>";
-  document.getElementsByClassName("modal__container")[0].innerHTML = template;
-  modal.style.display = "block";
+  let url = "http://localhost:3000/heroes/" + heroName;
+  fetch(url)
+    .then(response => response.json())
+    .then(hero => {
+      let template = "";
+      template =
+        "" +
+        '<div class="modal__close" onclick = "closeModal()">x</div>' +
+        '<div class="modal__image">' +
+        '<img src="' +
+        hero.image +
+        '">' +
+        "</div>" +
+        '<div class="modal__information">' +
+        '<h2 class="modal__name">I' +
+        "'" +
+        "M THE " +
+        hero.name.toUpperCase() +
+        "</h2>" +
+        '<div class="modal__description">' +
+        hero.description +
+        "</div>" +
+        '<div class="modal__price">WYNAJEM: ' +
+        hero.price +
+        " ZŁ/H</div>";
+      if (hero.isAvailable) {
+        template +=
+          '<button class="modal__submit" onclick="addToBasket(' +
+          "'" +
+          hero.name +
+          "'" +
+          ')">DODAJ DO KOSZYKA</button>';
+      } else {
+        template +=
+          '<button class="modal__submit modal__submit--disabled" disabled)">HERO ZAJĘTY</button>';
+      }
+      template += "</div>";
+      document.getElementsByClassName("modal__container")[0].innerHTML = template;
+      modal.style.display = "block";
+    });
 };
 
 const closeModal = () => {
