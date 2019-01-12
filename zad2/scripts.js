@@ -158,13 +158,15 @@ const deleteHero = () => {
 
 const openDeleteHeroes = () => {
   let url = "http://localhost:3000/heroes/";
-  fetch(url, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
-  location.reload();
+  if(window.confirm("Czy na pewno chcesz usunąć wszystkich bohaterów?")){
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    location.reload();
+  }
 };
 
 const showHeroes = () => {
