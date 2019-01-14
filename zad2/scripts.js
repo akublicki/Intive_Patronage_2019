@@ -26,32 +26,39 @@ const hideMain = () => {
 };
 
 const openAddHero = () => {
-  document.getElementsByTagName("main")[0].innerHTML =
-    "" +
-    '<form class="addHero" >' +
-    "<h2>Dodaj Herosa</h2>" +
-    "<input " +
-    'type="text" ' +
-    'placeholder="Nazwa Bohatera" ' +
-    'class="addHero__input addHero__name" ' +
-    "/>" +
-    "<input " +
-    'type="text" ' +
-    'placeholder="Adres/nazwa zdjęcia" ' +
-    'class="addHero__input addHero__image" ' +
-    "/>" +
-    "<input " +
-    'type="number" ' +
-    'placeholder="Cena wynajmu /h" ' +
-    'class="addHero__input addHero__price" ' +
-    "/>" +
-    "<textarea " +
-    'type="text" ' +
-    'placeholder="Opis Bohatera" ' +
-    'class="addHero__input addHero__description" ' +
-    "></textarea>" +
-    '<button type="button" class="addHero__submit" onclick="addHero()">Submit</button>' +
-    "</form>";
+  document.getElementsByTagName("main")[0].innerHTML = `
+    <form class="addHero">
+          <h2>Dodaj Herosa</h2>
+        <input
+          type="text"
+          placeholder="Nazwa Bohatera"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Nazwa Bohatera'"
+          class="addHero__input addHero__name"
+        />
+        <input
+          type="text"
+          placeholder="Adres/nazwa zdjęcia"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Adres/nazwa zdjęcia'"
+          class="addHero__input addHero__image"
+        />
+        <input
+          type="number"
+          placeholder="Cena wynajmu /h"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Cena wynajmu /h'"
+          class="addHero__input addHero__price"
+        />
+        <textarea
+          type="text"
+          placeholder="Opis Bohatera"
+          onfocus="this.placeholder = ''"
+          onblur="this.placeholder = 'Opis Bohatera'"
+          class="addHero__input addHero__description"
+        ></textarea>
+        <button type="button" class="addHero__submit">Submit</button>
+      </form>`;
 };
 
 const addHero = () => {
@@ -86,32 +93,28 @@ const openEditHero = () => {
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
-        templateHeroes +=
-          '<option value="' +
-          heroes[hero].name +
-          '">' +
-          heroes[hero].name +
-          "</option>";
+        templateHeroes += `
+          <option value="${heroes[hero].name}">
+            ${heroes[hero].name}
+          </option>`;
       }
-      template =
-        "" +
-        '<form class="editHero">' +
-        "<h2>Edytuj Herosa</h2>" +
-        '<label class="editHero__label"> Wybierz istniejącego Heroesa </label>' +
-        '<select class="editHero__select" onchange="changeHero()">' +
-        "<option disabled selected>--- WYBIERZ ---</option>";
-      template += templateHeroes;
-      template +=
-        "" +
-        "</select>" +
-        '<label class="editHero__label">Adres/nazwa zdjęcia</label>' +
-        '<input type="text" class="editHero__input editHero__image" />' +
-        '<label class="editHero__label">Cena wynajmu /h</label>' +
-        '<input type="number" class="editHero__input editHero__price" />' +
-        '<label class="editHero__label">Opis Bohatera</label>' +
-        '<textarea type="text" class="editHero__input editHero__description"></textarea>' +
-        '<button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>' +
-        "</form>";
+      template = ` 
+        <form class="editHero">
+        <h2>Edytuj Herosa</h2>
+        <label class="editHero__label"> Wybierz istniejącego Heroesa </label>
+        <select class="editHero__select" onchange="changeHero()">
+            <option disabled selected>--- WYBIERZ ---</option>
+            ${templateHeroes}
+        </select>
+        <label class="editHero__label">Adres/nazwa zdjęcia</label>
+        <input type="text" class="editHero__input editHero__image"/>
+        <label class="editHero__label">Cena wynajmu /h</label>
+        <input type="number" class="editHero__input editHero__price"/>
+        <label class="editHero__label">Opis Bohatera</label>
+        <textarea type="text" class="editHero__input editHero__description">
+        </textarea>
+        <button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>
+        </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
     });
 };
@@ -165,26 +168,21 @@ const openDeleteHero = () => {
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
-        templateHeroes +=
-          '<option value="' +
-          heroes[hero].name +
-          '">' +
-          heroes[hero].name +
-          "</option>";
+        templateHeroes += `
+          <option value="${heroes[hero].name}">
+            ${heroes[hero].name}
+          </option>`;
       }
-      template =
-        "" +
-        '<form class="deleteHero">' +
-        "<h2>Usuń Herosa :-(</h2>" +
-        '<label class="deleteHero__label"> Wybierz istniejącego Heroesa </label>' +
-        '<select class="deleteHero__select">' +
-        "<option disabled selected>--- WYBIERZ ---</option>";
-      template += templateHeroes;
-      template +=
-        "" +
-        "</select>" +
-        '<button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>' +
-        "</form>";
+      template = `
+        <form class="deleteHero">
+        <h2>Usuń Herosa :-(</h2>
+        <label class="deleteHero__label"> Wybierz istniejącego Heroesa </label>
+        <select class="deleteHero__select">
+          <option disabled selected>--- WYBIERZ ---</option>
+          ${templateHeroes}
+        </select>
+        <button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>
+        </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
     });
 };
@@ -222,23 +220,12 @@ const showHeroes = () => {
     .then(heroes => {
       let template = "";
       for (hero in heroes) {
-        template +=
-          "" +
-          '<div class="hero" onclick="openModal(' +
-          "'" +
-          heroes[hero].name +
-          "'" +
-          ')"> ' +
-          '<img src="' +
-          heroes[hero].image +
-          '" class="hero__image">' +
-          '<div class="hero__name">' +
-          heroes[hero].name +
-          "</div>" +
-          '<div class="hero__price">Cena wynajmu: ' +
-          heroes[hero].price +
-          "zł/h</div>" +
-          "</div>";
+        template += `
+          <div class="hero" onclick="openModal('${heroes[hero].name}')">
+          <img src="${heroes[hero].image}" class="hero__image">
+          <div class="hero__name">${heroes[hero].name}</div>
+          <div class="hero__price">Cena wynajmu: ${heroes[hero].price}zł/h</div>
+          </div>`;
       }
       document.getElementsByClassName("heroes")[0].innerHTML = template;
     });
@@ -259,36 +246,25 @@ const openModal = heroName => {
     .then(response => response.json())
     .then(hero => {
       let template = "";
-      template =
-        "" +
-        '<div class="modal__close" onclick = "closeModal()">x</div>' +
-        '<div class="modal__image">' +
-        '<img src="' +
-        hero.image +
-        '">' +
-        "</div>" +
-        '<div class="modal__information">' +
-        '<h2 class="modal__name">I' +
-        "'" +
-        "M THE " +
-        hero.name.toUpperCase() +
-        "</h2>" +
-        '<div class="modal__description">' +
-        hero.description +
-        "</div>" +
-        '<div class="modal__price">WYNAJEM: ' +
-        hero.price +
-        " ZŁ/H</div>";
+      template = `
+        <div class="modal__close" onclick = "closeModal()">x</div>
+        <div class="modal__image">
+        <img src="${hero.image}">
+        </div>
+        <div class="modal__information">
+        <h2 class="modal__name">I'M THE ${hero.name.toUpperCase()}</h2>
+        <div class="modal__description">${hero.description}</div>
+        <div class="modal__price">WYNAJEM: ${hero.price} ZŁ/H</div>`;
       if (hero.isAvailable) {
-        template +=
-          '<button class="modal__submit" onclick="addToBasket(' +
-          "'" +
-          hero.name +
-          "'" +
-          ')">DODAJ DO KOSZYKA</button>';
+        template += `
+          <button class="modal__submit" onclick="addToBasket('${hero.name}')">
+            DODAJ DO KOSZYKA
+          </button>`;
       } else {
-        template +=
-          '<button class="modal__submit modal__submit--disabled" disabled)">HERO ZAJĘTY</button>';
+        template += `
+          <button class="modal__submit modal__submit--disabled" disabled">
+            HERO ZAJĘTY
+          </button>`;
       }
       template += "</div>";
       document.getElementsByClassName(
@@ -303,27 +279,12 @@ const closeModal = () => {
 };
 
 const addToBasket = heroName => {
-        // let url = "http://localhost:3000/heroes/" + heroName;
-        // fetch(url)
-        //   .then(response => response.json())
-        //   .then(heroJSON => {
-        //     basket[heroName] = {
-        //       name: heroName,
-        //       description: heroJSON.description,
-        //       image: heroJSON.image,
-        //       price: heroJSON.price
-        //     };
-        //     changeHeroIsAvailable(heroName, false);
-        //     saveToLocalStorage();
-        //     closeModal();
-        //     location.reload();
-        //   });
-        basket.push(heroName);
-        changeHeroIsAvailable(heroName, false);
-        saveToLocalStorage();
-        closeModal();
-        location.reload();
-      };;
+  basket.push(heroName);
+  changeHeroIsAvailable(heroName, false);
+  saveToLocalStorage();
+  closeModal();
+  location.reload();
+};
 
 const changeHeroIsAvailable = (heroName, status) => {
   let url = "http://localhost:3000/heroes/" + heroName;
@@ -340,74 +301,39 @@ const changeHeroIsAvailable = (heroName, status) => {
 
 const showBasket = () => {
   let price = 0;
-  // let template = "";
-  // for (hero in basket) {
-  //   template +=
-  //     "" +
-  //     '<div class="basket__hero">' +
-  //     '<div class="basket__hero--width40">' +
-  //     "<img src=" +
-  //     basket[hero].image +
-  //     ' class="basket__heroImage">' +
-  //     "</div>" +
-  //     '<div class="basket__hero--width60">' +
-  //     "<span>" +
-  //     basket[hero].name +
-  //     "</span>" +
-  //     '<p class="basket__heroDescription">' +
-  //     basket[hero].description +
-  //     "</p>" +
-  //     '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
-  //     "'" +
-  //     basket[hero].name +
-  //     "'" +
-  //     ')">USUŃ Z KOSZYKA | x</button>' +
-  //     "</div>" +
-  //     "</div>";
-  //   price += Number(basket[hero].price);
-  // }
-
   let url = "";
   let template = "";
-  basket.forEach( heroName => {
+  basket.forEach(heroName => {
     url = `http://localhost:3000/heroes/${heroName}`;
     fetch(url)
-    .then(response => response.json())
-    .then(hero => {
-      template +=
-      "" +
-      '<div class="basket__hero">' +
-      '<div class="basket__hero--width40">' +
-      "<img src=" +
-      hero.image +
-      ' class="basket__heroImage">' +
-      "</div>" +
-      '<div class="basket__hero--width60">' +
-      "<span>" +
-      hero.name +
-      "</span>" +
-      '<p class="basket__heroDescription">' +
-      hero.description +
-      "</p>" +
-      '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
-      "'" +
-      hero.name +
-      "'" +
-      ')">USUŃ Z KOSZYKA | x</button>' +
-      "</div>" +
-      "</div>";
-    price += Number(hero.price);
-      if (price != 0) {
-        document.getElementsByClassName("basket__heroes")[0].innerHTML = template;
-        document.getElementsByClassName("basket__price--colorRed")[0].innerHTML =
-          price + "zł";
-      };
-    });
+      .then(response => response.json())
+      .then(hero => {
+        template += `
+          <div class="basket__hero">
+          <div class="basket__hero--width40">
+          <img src="${hero.image}" class="basket__heroImage">
+          </div>
+          <div class="basket__hero--width60">
+          <span>${hero.name}</span>
+          <p class="basket__heroDescription">${hero.description}</p>
+          <button type="button" class="basket__buttonDelete" onclick="deleteFromBasket('${hero.name}')">USUŃ Z KOSZYKA | x</button>
+          </div>
+          </div>`;
+        price += Number(hero.price);
+        if (price != 0) {
+          document.getElementsByClassName(
+            "basket__heroes"
+          )[0].innerHTML = template;
+          document.getElementsByClassName(
+            "basket__price--colorRed"
+          )[0].innerHTML = price + "zł";
+        }
+      });
   });
 };
 
 const deleteFromBasket = heroName => {
-  basket.splice(basket.indexOf(heroName),1);
+  basket.splice(basket.indexOf(heroName), 1);
   changeHeroIsAvailable(heroName, true);
   saveToLocalStorage();
   location.reload();
