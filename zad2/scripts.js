@@ -1,5 +1,6 @@
 const modal = document.getElementsByClassName("modal")[0];
 let heroes = {};
+let basket = {};
 
 const openMobileNav = x => {
   x.classList.toggle("change");
@@ -59,7 +60,8 @@ const addHero = () => {
   if (addHeroName) {
     let hero = {
       name: addHeroName,
-      description: document.getElementsByClassName("addHero__description")[0].value,
+      description: document.getElementsByClassName("addHero__description")[0]
+        .value,
       image: document.getElementsByClassName("addHero__image")[0].value,
       price: document.getElementsByClassName("addHero__price")[0].value,
       isAvailable: true
@@ -79,21 +81,28 @@ const addHero = () => {
 const openEditHero = () => {
   let template = "";
   let templateHeroes = "";
-  let url = "http://localhost:3000/heroes";;
+  let url = "http://localhost:3000/heroes";
   fetch(url)
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
-        templateHeroes += '<option value="' + heroes[hero].name + '">' + heroes[hero].name + "</option>";
+        templateHeroes +=
+          '<option value="' +
+          heroes[hero].name +
+          '">' +
+          heroes[hero].name +
+          "</option>";
       }
-      template = "" +
+      template =
+        "" +
         '<form class="editHero">' +
         "<h2>Edytuj Herosa</h2>" +
         '<label class="editHero__label"> Wybierz istniejącego Heroesa </label>' +
         '<select class="editHero__select" onchange="changeHero()">' +
         "<option disabled selected>--- WYBIERZ ---</option>";
       template += templateHeroes;
-      template += "" +
+      template +=
+        "" +
         "</select>" +
         '<label class="editHero__label">Adres/nazwa zdjęcia</label>' +
         '<input type="text" class="editHero__input editHero__image" />' +
@@ -114,11 +123,17 @@ const changeHero = () => {
   fetch(url)
     .then(response => response.json())
     .then(hero => {
-      document.getElementsByClassName("editHero__input editHero__image")[0].value = hero.image;
-      document.getElementsByClassName("editHero__input editHero__price")[0].value = hero.price;
-      document.getElementsByClassName("editHero__input editHero__description")[0].value = hero.description;
+      document.getElementsByClassName(
+        "editHero__input editHero__image"
+      )[0].value = hero.image;
+      document.getElementsByClassName(
+        "editHero__input editHero__price"
+      )[0].value = hero.price;
+      document.getElementsByClassName(
+        "editHero__input editHero__description"
+      )[0].value = hero.description;
     });
- };
+};
 
 const editHero = () => {
   let element = document.getElementsByClassName("editHero__select")[0];
@@ -126,14 +141,18 @@ const editHero = () => {
   let url = "http://localhost:3000/heroes/" + heroName;
   let hero = {
     name: heroName,
-    description: document.getElementsByClassName("editHero__input editHero__description")[0].value,
-    image: document.getElementsByClassName("editHero__input editHero__image")[0].value,
-    price: document.getElementsByClassName("editHero__input editHero__price")[0].value
+    description: document.getElementsByClassName(
+      "editHero__input editHero__description"
+    )[0].value,
+    image: document.getElementsByClassName("editHero__input editHero__image")[0]
+      .value,
+    price: document.getElementsByClassName("editHero__input editHero__price")[0]
+      .value
   };
   fetch(url, {
     method: "PUT",
     body: JSON.stringify(hero),
-    headers: {"Content-Type": "application/json"}
+    headers: { "Content-Type": "application/json" }
   });
   location.reload();
 };
@@ -146,7 +165,12 @@ const openDeleteHero = () => {
     .then(response => response.json())
     .then(heroes => {
       for (hero in heroes) {
-        templateHeroes +='<option value="' + heroes[hero].name + '">' + heroes[hero].name + "</option>";
+        templateHeroes +=
+          '<option value="' +
+          heroes[hero].name +
+          '">' +
+          heroes[hero].name +
+          "</option>";
       }
       template =
         "" +
@@ -156,26 +180,32 @@ const openDeleteHero = () => {
         '<select class="deleteHero__select">' +
         "<option disabled selected>--- WYBIERZ ---</option>";
       template += templateHeroes;
-      template += "" + "</select>" + '<button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>' + "</form>";
+      template +=
+        "" +
+        "</select>" +
+        '<button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>' +
+        "</form>";
       document.getElementsByTagName("main")[0].innerHTML = template;
     });
 };
 
 const deleteHero = () => {
-    let element = document.getElementsByClassName("deleteHero__select")[0];
-    let url = "http://localhost:3000/heroes/" + element.options[element.selectedIndex].value;
-    fetch(url, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-    location.reload();
+  let element = document.getElementsByClassName("deleteHero__select")[0];
+  let url =
+    "http://localhost:3000/heroes/" +
+    element.options[element.selectedIndex].value;
+  fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  location.reload();
 };
 
 const openDeleteHeroes = () => {
   let url = "http://localhost:3000/heroes/";
-  if(window.confirm("Czy na pewno chcesz usunąć wszystkich bohaterów?")){
+  if (window.confirm("Czy na pewno chcesz usunąć wszystkich bohaterów?")) {
     fetch(url, {
       method: "DELETE",
       headers: {
@@ -215,12 +245,12 @@ const showHeroes = () => {
 };
 
 const saveToLocalStorage = () => {
-  localStorage.setItem("heroes", JSON.stringify(heroes));
+  localStorage.setItem("basket", JSON.stringify(basket));
 };
 
 const loadFromLocalStorage = () => {
-  let heroesFromLocalStorage = localStorage.getItem("heroes");
-  heroes = JSON.parse(heroesFromLocalStorage);
+  let basketFromLocalStorage = localStorage.getItem("basket");
+  basket = JSON.parse(basketFromLocalStorage);
 };
 
 const openModal = heroName => {
@@ -261,7 +291,9 @@ const openModal = heroName => {
           '<button class="modal__submit modal__submit--disabled" disabled)">HERO ZAJĘTY</button>';
       }
       template += "</div>";
-      document.getElementsByClassName("modal__container")[0].innerHTML = template;
+      document.getElementsByClassName(
+        "modal__container"
+      )[0].innerHTML = template;
       modal.style.display = "block";
     });
 };
@@ -271,41 +303,63 @@ const closeModal = () => {
 };
 
 const addToBasket = heroName => {
-  heroes[heroName].isAvailable = false;
-  saveToLocalStorage();
-  closeModal();
-  location.reload();
+  let url = "http://localhost:3000/heroes/" + heroName;
+  fetch(url)
+    .then(response => response.json())
+    .then(heroJSON => {
+      basket[heroName] = {
+        name: heroName,
+        description: heroJSON.description,
+        image: heroJSON.image,
+        price: heroJSON.price
+      };
+      changeHeroIsAvailable(heroName, false);
+      saveToLocalStorage();
+      closeModal();
+      location.reload();
+    });
+};
+
+const changeHeroIsAvailable = (heroName, status) => {
+  let url = "http://localhost:3000/heroes/" + heroName;
+  let hero = {
+    name: heroName,
+    isAvailable: status
+  };
+  fetch(url, {
+    method: "PUT",
+    body: JSON.stringify(hero),
+    headers: { "Content-Type": "application/json" }
+  });
 };
 
 const showBasket = () => {
   let price = 0;
   let template = "";
-  for (hero in heroes) {
-    if (!heroes[hero].isAvailable) {
-      template +=
-        "" +
-        '<div class="basket__hero">' +
-        '<div class="basket__hero--width40">' +
-        "<img src=" +
-        heroes[hero].image +
-        ' class="basket__heroImage">' +
-        "</div>" +
-        '<div class="basket__hero--width60">' +
-        "<span>" +
-        heroes[hero].name +
-        "</span>" +
-        '<p class="basket__heroDescription">' +
-        heroes[hero].description +
-        "</p>" +
-        '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
-        "'" +
-        heroes[hero].name +
-        "'" +
-        ')">USUŃ Z KOSZYKA | x</button>' +
-        "</div>" +
-        "</div>";
-      price += Number(heroes[hero].price);
-    }
+  for (hero in basket) {
+    template +=
+      "" +
+      '<div class="basket__hero">' +
+      '<div class="basket__hero--width40">' +
+      "<img src=" +
+      basket[hero].image +
+      ' class="basket__heroImage">' +
+      "</div>" +
+      '<div class="basket__hero--width60">' +
+      "<span>" +
+      basket[hero].name +
+      "</span>" +
+      '<p class="basket__heroDescription">' +
+      basket[hero].description +
+      "</p>" +
+      '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
+      "'" +
+      basket[hero].name +
+      "'" +
+      ')">USUŃ Z KOSZYKA | x</button>' +
+      "</div>" +
+      "</div>";
+    price += Number(basket[hero].price);
   }
   if (price != 0) {
     document.getElementsByClassName("basket__heroes")[0].innerHTML = template;
@@ -315,15 +369,17 @@ const showBasket = () => {
 };
 
 const deleteFromBasket = heroName => {
-  heroes[heroName].isAvailable = true;
+  delete basket[heroName];
+  changeHeroIsAvailable(heroName, true);
   saveToLocalStorage();
   location.reload();
 };
 
 loadFromLocalStorage();
-if (heroes) {
+if (basket) {
   showHeroes();
   showBasket();
 } else {
-  heroes = {};
+  basket = {};
+  showHeroes();
 }

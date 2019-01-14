@@ -5,20 +5,20 @@
       "description": "Pan gąbka",
       "image": "https://i.pinimg.com/originals/df/f4/76/dff476e668e295d60ed58a9d6011d799.jpg",
       "price": "5",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "Papa Smerf",
       "description": "Ojciec wszystkich Smerfów",
       "image": "https://i.ytimg.com/vi/40Lw8zA9zAU/hqdefault.jpg",
       "price": "500",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "Punisher",
       "description": "Punisher",
       "image": "https://m.media-amazon.com/images/M/MV5BMjI5NjcwMTQxMV5BMl5BanBnXkFtZTcwODg5ODkwNQ@@._V1_.jpg",
-      "price": "999",
+      "price": "50",
       "isAvailable": true
     },
     {
@@ -26,14 +26,14 @@
       "description": "Różowa świnka",
       "image": "https://www.miniminiplus.pl/img/postacie/peppa.png",
       "price": "2",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "Batman",
       "description": "Batman2222",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Batman_DC_Comics.png",
       "price": "325",
-      "isAvailable": false
+      "isAvailable": true
     }
   ]
 }
