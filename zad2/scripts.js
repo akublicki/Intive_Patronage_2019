@@ -1,6 +1,6 @@
 const modal = document.getElementsByClassName("modal")[0];
 let heroes = {};
-let basket = {};
+let basket = [];
 
 const openMobileNav = x => {
   x.classList.toggle("change");
@@ -303,22 +303,27 @@ const closeModal = () => {
 };
 
 const addToBasket = heroName => {
-  let url = "http://localhost:3000/heroes/" + heroName;
-  fetch(url)
-    .then(response => response.json())
-    .then(heroJSON => {
-      basket[heroName] = {
-        name: heroName,
-        description: heroJSON.description,
-        image: heroJSON.image,
-        price: heroJSON.price
-      };
-      changeHeroIsAvailable(heroName, false);
-      saveToLocalStorage();
-      closeModal();
-      location.reload();
-    });
-};
+        // let url = "http://localhost:3000/heroes/" + heroName;
+        // fetch(url)
+        //   .then(response => response.json())
+        //   .then(heroJSON => {
+        //     basket[heroName] = {
+        //       name: heroName,
+        //       description: heroJSON.description,
+        //       image: heroJSON.image,
+        //       price: heroJSON.price
+        //     };
+        //     changeHeroIsAvailable(heroName, false);
+        //     saveToLocalStorage();
+        //     closeModal();
+        //     location.reload();
+        //   });
+        basket.push(heroName);
+        changeHeroIsAvailable(heroName, false);
+        saveToLocalStorage();
+        closeModal();
+        location.reload();
+      };;
 
 const changeHeroIsAvailable = (heroName, status) => {
   let url = "http://localhost:3000/heroes/" + heroName;
@@ -335,41 +340,74 @@ const changeHeroIsAvailable = (heroName, status) => {
 
 const showBasket = () => {
   let price = 0;
+  // let template = "";
+  // for (hero in basket) {
+  //   template +=
+  //     "" +
+  //     '<div class="basket__hero">' +
+  //     '<div class="basket__hero--width40">' +
+  //     "<img src=" +
+  //     basket[hero].image +
+  //     ' class="basket__heroImage">' +
+  //     "</div>" +
+  //     '<div class="basket__hero--width60">' +
+  //     "<span>" +
+  //     basket[hero].name +
+  //     "</span>" +
+  //     '<p class="basket__heroDescription">' +
+  //     basket[hero].description +
+  //     "</p>" +
+  //     '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
+  //     "'" +
+  //     basket[hero].name +
+  //     "'" +
+  //     ')">USUŃ Z KOSZYKA | x</button>' +
+  //     "</div>" +
+  //     "</div>";
+  //   price += Number(basket[hero].price);
+  // }
+
+  let url = "";
   let template = "";
-  for (hero in basket) {
-    template +=
+  basket.forEach( heroName => {
+    url = `http://localhost:3000/heroes/${heroName}`;
+    fetch(url)
+    .then(response => response.json())
+    .then(hero => {
+      template +=
       "" +
       '<div class="basket__hero">' +
       '<div class="basket__hero--width40">' +
       "<img src=" +
-      basket[hero].image +
+      hero.image +
       ' class="basket__heroImage">' +
       "</div>" +
       '<div class="basket__hero--width60">' +
       "<span>" +
-      basket[hero].name +
+      hero.name +
       "</span>" +
       '<p class="basket__heroDescription">' +
-      basket[hero].description +
+      hero.description +
       "</p>" +
       '<button type="button" class="basket__buttonDelete" onclick="deleteFromBasket(' +
       "'" +
-      basket[hero].name +
+      hero.name +
       "'" +
       ')">USUŃ Z KOSZYKA | x</button>' +
       "</div>" +
       "</div>";
-    price += Number(basket[hero].price);
-  }
-  if (price != 0) {
-    document.getElementsByClassName("basket__heroes")[0].innerHTML = template;
-    document.getElementsByClassName("basket__price--colorRed")[0].innerHTML =
-      price + "zł";
-  }
+    price += Number(hero.price);
+      if (price != 0) {
+        document.getElementsByClassName("basket__heroes")[0].innerHTML = template;
+        document.getElementsByClassName("basket__price--colorRed")[0].innerHTML =
+          price + "zł";
+      };
+    });
+  });
 };
 
 const deleteFromBasket = heroName => {
-  delete basket[heroName];
+  basket.splice(basket.indexOf(heroName),1);
   changeHeroIsAvailable(heroName, true);
   saveToLocalStorage();
   location.reload();
@@ -380,6 +418,6 @@ if (basket) {
   showHeroes();
   showBasket();
 } else {
-  basket = {};
+  basket = [];
   showHeroes();
 }
