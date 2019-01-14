@@ -125,14 +125,15 @@ const editHero = () => {
   let heroName = element.options[element.selectedIndex].value;
   let url = "http://localhost:3000/heroes/" + heroName;
   let hero = {
+    name: heroName,
     description: document.getElementsByClassName("editHero__input editHero__description")[0].value,
     image: document.getElementsByClassName("editHero__input editHero__image")[0].value,
     price: document.getElementsByClassName("editHero__input editHero__price")[0].value
   };
   fetch(url, {
     method: "PUT",
-    body: JSON.stringify(hero)
-    // headers: {"Content-Type": "application/json"}
+    body: JSON.stringify(hero),
+    headers: {"Content-Type": "application/json"}
   });
   location.reload();
 };

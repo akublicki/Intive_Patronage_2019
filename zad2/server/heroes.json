@@ -27,6 +27,13 @@
       "image": "https://www.miniminiplus.pl/img/postacie/peppa.png",
       "price": "2",
       "isAvailable": true
+    },
+    {
+      "name": "Batman",
+      "description": "Batman2222",
+      "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Batman_DC_Comics.png",
+      "price": "325",
+      "isAvailable": false
     }
   ]
 }
