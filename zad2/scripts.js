@@ -59,13 +59,14 @@ const openAddHero = () => {
         ></textarea>
         <button type="button" class="addHero__submit">Submit</button>
       </form>`;
+  document.getElementsByClassName("addHero__submit")[0].addEventListener("click", addHero);
 };
 
 const addHero = () => {
-  let url = "http://localhost:3000/heroes";
-  let addHeroName = document.getElementsByClassName("addHero__name")[0].value;
+  const url = "http://localhost:3000/heroes";
+  const addHeroName = document.getElementsByClassName("addHero__name")[0].value;
   if (addHeroName) {
-    let hero = {
+    const hero = {
       name: addHeroName,
       description: document.getElementsByClassName("addHero__description")[0]
         .value,
@@ -88,7 +89,7 @@ const addHero = () => {
 const openEditHero = () => {
   let template = "";
   let templateHeroes = "";
-  let url = "http://localhost:3000/heroes";
+  const url = "http://localhost:3000/heroes";
   fetch(url)
     .then(response => response.json())
     .then(heroes => {
@@ -120,9 +121,9 @@ const openEditHero = () => {
 };
 
 const changeHero = () => {
-  let element = document.getElementsByClassName("editHero__select")[0];
-  let heroName = element.options[element.selectedIndex].value;
-  let url = "http://localhost:3000/heroes/" + heroName;
+  const element = document.getElementsByClassName("editHero__select")[0];
+  const heroName = element.options[element.selectedIndex].value;
+  const url = "http://localhost:3000/heroes/" + heroName;
   fetch(url)
     .then(response => response.json())
     .then(hero => {
@@ -139,10 +140,10 @@ const changeHero = () => {
 };
 
 const editHero = () => {
-  let element = document.getElementsByClassName("editHero__select")[0];
-  let heroName = element.options[element.selectedIndex].value;
-  let url = "http://localhost:3000/heroes/" + heroName;
-  let hero = {
+  const element = document.getElementsByClassName("editHero__select")[0];
+  const heroName = element.options[element.selectedIndex].value;
+  const url = "http://localhost:3000/heroes/" + heroName;
+  const hero = {
     name: heroName,
     description: document.getElementsByClassName(
       "editHero__input editHero__description"
@@ -163,7 +164,7 @@ const editHero = () => {
 const openDeleteHero = () => {
   let template = "";
   let templateHeroes = "";
-  let url = "http://localhost:3000/heroes";
+  const url = "http://localhost:3000/heroes";
   fetch(url)
     .then(response => response.json())
     .then(heroes => {
@@ -188,8 +189,8 @@ const openDeleteHero = () => {
 };
 
 const deleteHero = () => {
-  let element = document.getElementsByClassName("deleteHero__select")[0];
-  let url =
+  const element = document.getElementsByClassName("deleteHero__select")[0];
+  const url =
     "http://localhost:3000/heroes/" +
     element.options[element.selectedIndex].value;
   fetch(url, {
@@ -202,7 +203,7 @@ const deleteHero = () => {
 };
 
 const openDeleteHeroes = () => {
-  let url = "http://localhost:3000/heroes/";
+  const url = "http://localhost:3000/heroes/";
   if (window.confirm("Czy na pewno chcesz usunąć wszystkich bohaterów?")) {
     fetch(url, {
       method: "DELETE",
@@ -236,12 +237,12 @@ const saveToLocalStorage = () => {
 };
 
 const loadFromLocalStorage = () => {
-  let basketFromLocalStorage = localStorage.getItem("basket");
+  const basketFromLocalStorage = localStorage.getItem("basket");
   basket = JSON.parse(basketFromLocalStorage);
 };
 
 const openModal = heroName => {
-  let url = "http://localhost:3000/heroes/" + heroName;
+  const url = "http://localhost:3000/heroes/" + heroName;
   fetch(url)
     .then(response => response.json())
     .then(hero => {
@@ -287,8 +288,8 @@ const addToBasket = heroName => {
 };
 
 const changeHeroIsAvailable = (heroName, status) => {
-  let url = "http://localhost:3000/heroes/" + heroName;
-  let hero = {
+  const url = "http://localhost:3000/heroes/" + heroName;
+  const hero = {
     name: heroName,
     isAvailable: status
   };

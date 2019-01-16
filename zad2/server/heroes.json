@@ -11,7 +11,7 @@
       "name": "Papa Smerf",
       "description": "Ojciec wszystkich Smerfów",
       "image": "https://i.ytimg.com/vi/40Lw8zA9zAU/hqdefault.jpg",
-      "price": "500",
+      "price": "501",
       "isAvailable": false
     },
     {
@@ -33,6 +33,13 @@
       "description": "Batman2222",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Batman_DC_Comics.png",
       "price": "325",
+      "isAvailable": true
+    },
+    {
+      "name": "Superman",
+      "description": "Clark Kent",
+      "image": "https://www.sideshowtoy.com/assets/products/903305-super-powers-superman/lg/dc-comics-superman-maquette-tweeterhead-903305-07.jpg",
+      "price": "1000000",
       "isAvailable": true
     }
   ]
