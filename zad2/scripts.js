@@ -74,7 +74,6 @@ const addHero = () => {
       price: document.getElementsByClassName("addHero__price")[0].value,
       isAvailable: true
     };
-
     fetch(url, {
       method: "POST",
       body: JSON.stringify(hero),
@@ -99,11 +98,11 @@ const openEditHero = () => {
             ${heroes[hero].name}
           </option>`;
       }
-      template = ` 
+      template = `
         <form class="editHero">
         <h2>Edytuj Herosa</h2>
         <label class="editHero__label"> Wybierz istniejącego Heroesa </label>
-        <select class="editHero__select" onchange="changeHero()">
+        <select class="editHero__select">
             <option disabled selected>--- WYBIERZ ---</option>
             ${templateHeroes}
         </select>
@@ -114,9 +113,11 @@ const openEditHero = () => {
         <label class="editHero__label">Opis Bohatera</label>
         <textarea type="text" class="editHero__input editHero__description">
         </textarea>
-        <button type="button" class="editHero__submit" onclick="editHero()">Edytuj</button>
+        <button type="button" class="editHero__submit">Edytuj</button>
         </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
+      document.getElementsByClassName("editHero__select")[0].addEventListener("change", changeHero);
+      document.getElementsByClassName("editHero__submit")[0].addEventListener("click", editHero);
     });
 };
 
@@ -182,9 +183,10 @@ const openDeleteHero = () => {
           <option disabled selected>--- WYBIERZ ---</option>
           ${templateHeroes}
         </select>
-        <button type="button" class="deleteHero__submit" onclick="deleteHero()">Usuń</button>
+        <button type="button" class="deleteHero__submit">Usuń</button>
         </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
+      document.getElementsByClassName("deleteHero__submit")[0].addEventListener("click", deleteHero);
     });
 };
 
@@ -222,15 +224,18 @@ const showHeroes = () => {
       let template = "";
       for (hero in heroes) {
         template += `
-          <div class="hero" onclick="openModal('${heroes[hero].name}')">
+          <div class="hero">
           <img src="${heroes[hero].image}" class="hero__image">
           <div class="hero__name">${heroes[hero].name}</div>
           <div class="hero__price">Cena wynajmu: ${heroes[hero].price}zł/h</div>
+          <div id="${heroes[hero].name}" class="hero__click"></div>
           </div>`;
       }
       document.getElementsByClassName("heroes")[0].innerHTML = template;
     });
 };
+
+{/* <div class="hero" onclick="openModal('${heroes[hero].name}')"></div> */}
 
 const saveToLocalStorage = () => {
   localStorage.setItem("basket", JSON.stringify(basket));
@@ -241,7 +246,9 @@ const loadFromLocalStorage = () => {
   basket = JSON.parse(basketFromLocalStorage);
 };
 
-const openModal = heroName => {
+const openModal = (e) => {
+  const heroName = e.target.id;
+  console.log(e.target.id);
   const url = "http://localhost:3000/heroes/" + heroName;
   fetch(url)
     .then(response => response.json())
@@ -348,3 +355,4 @@ if (basket) {
   basket = [];
   showHeroes();
 }
+document.getElementsByClassName("heroes")[0].addEventListener("click",openModal,false);

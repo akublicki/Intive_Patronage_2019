@@ -16,7 +16,7 @@
     },
     {
       "name": "Punisher",
-      "description": "Punisher AAAA",
+      "description": "Punisher",
       "image": "https://m.media-amazon.com/images/M/MV5BMjI5NjcwMTQxMV5BMl5BanBnXkFtZTcwODg5ODkwNQ@@._V1_.jpg",
       "price": "25",
       "isAvailable": true
@@ -39,7 +39,7 @@
       "name": "Superman",
       "description": "Clark Kent",
       "image": "https://www.sideshowtoy.com/assets/products/903305-super-powers-superman/lg/dc-comics-superman-maquette-tweeterhead-903305-07.jpg",
-      "price": "1000000",
+      "price": "10000",
       "isAvailable": true
     }
   ]
