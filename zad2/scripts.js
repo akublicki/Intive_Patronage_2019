@@ -59,7 +59,9 @@ const openAddHero = () => {
         ></textarea>
         <button type="button" class="addHero__submit">Submit</button>
       </form>`;
-  document.getElementsByClassName("addHero__submit")[0].addEventListener("click", addHero);
+  document
+    .getElementsByClassName("addHero__submit")[0]
+    .addEventListener("click", addHero);
 };
 
 const addHero = () => {
@@ -116,8 +118,12 @@ const openEditHero = () => {
         <button type="button" class="editHero__submit">Edytuj</button>
         </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
-      document.getElementsByClassName("editHero__select")[0].addEventListener("change", changeHero);
-      document.getElementsByClassName("editHero__submit")[0].addEventListener("click", editHero);
+      document
+        .getElementsByClassName("editHero__select")[0]
+        .addEventListener("change", changeHero);
+      document
+        .getElementsByClassName("editHero__submit")[0]
+        .addEventListener("click", editHero);
     });
 };
 
@@ -186,7 +192,9 @@ const openDeleteHero = () => {
         <button type="button" class="deleteHero__submit">Usuń</button>
         </form>`;
       document.getElementsByTagName("main")[0].innerHTML = template;
-      document.getElementsByClassName("deleteHero__submit")[0].addEventListener("click", deleteHero);
+      document
+        .getElementsByClassName("deleteHero__submit")[0]
+        .addEventListener("click", deleteHero);
     });
 };
 
@@ -235,8 +243,6 @@ const showHeroes = () => {
     });
 };
 
-{/* <div class="hero" onclick="openModal('${heroes[hero].name}')"></div> */}
-
 const saveToLocalStorage = () => {
   localStorage.setItem("basket", JSON.stringify(basket));
 };
@@ -246,16 +252,16 @@ const loadFromLocalStorage = () => {
   basket = JSON.parse(basketFromLocalStorage);
 };
 
-const openModal = (e) => {
+const openModal = e => {
   const heroName = e.target.id;
-  console.log(e.target.id);
-  const url = "http://localhost:3000/heroes/" + heroName;
-  fetch(url)
-    .then(response => response.json())
-    .then(hero => {
-      let template = "";
-      template = `
-        <div class="modal__close" onclick = "closeModal()">x</div>
+  if (e.target.id) {
+    const url = "http://localhost:3000/heroes/" + heroName;
+    fetch(url)
+      .then(response => response.json())
+      .then(hero => {
+        let template = "";
+        template = `
+        <div class="modal__close">x</div>
         <div class="modal__image">
         <img src="${hero.image}">
         </div>
@@ -263,30 +269,38 @@ const openModal = (e) => {
         <h2 class="modal__name">I'M THE ${hero.name.toUpperCase()}</h2>
         <div class="modal__description">${hero.description}</div>
         <div class="modal__price">WYNAJEM: ${hero.price} ZŁ/H</div>`;
-      if (hero.isAvailable) {
-        template += `
-          <button class="modal__submit" onclick="addToBasket('${hero.name}')">
+        if (hero.isAvailable) {
+          template += `
+          <button class="modal__submit modal__submit--click" name="${hero.name}">
             DODAJ DO KOSZYKA
           </button>`;
-      } else {
-        template += `
+        } else {
+          template += `
           <button class="modal__submit modal__submit--disabled" disabled">
             HERO ZAJĘTY
           </button>`;
-      }
-      template += "</div>";
-      document.getElementsByClassName(
-        "modal__container"
-      )[0].innerHTML = template;
-      modal.style.display = "block";
-    });
+        }
+        template += "</div>";
+        document.getElementsByClassName(
+          "modal__container"
+        )[0].innerHTML = template;
+        modal.style.display = "block";
+        document
+          .getElementsByClassName("modal__close")[0]
+          .addEventListener("click", closeModal);
+        document
+          .getElementsByClassName("modal__submit--click")[0]
+          .addEventListener("click", addToBasket);
+      });
+  }
 };
 
 const closeModal = () => {
   modal.style.display = "none";
 };
 
-const addToBasket = heroName => {
+const addToBasket = e => {
+  const heroName = e.target.name;
   basket.push(heroName);
   changeHeroIsAvailable(heroName, false);
   saveToLocalStorage();
@@ -324,7 +338,9 @@ const showBasket = () => {
           <div class="basket__hero--width60">
           <span>${hero.name}</span>
           <p class="basket__heroDescription">${hero.description}</p>
-          <button type="button" class="basket__buttonDelete" onclick="deleteFromBasket('${hero.name}')">USUŃ Z KOSZYKA | x</button>
+          <button type="button" name="${
+            hero.name
+          }" class="basket__buttonDelete">USUŃ Z KOSZYKA | x</button>
           </div>
           </div>`;
         price += Number(hero.price);
@@ -336,15 +352,21 @@ const showBasket = () => {
             "basket__price--colorRed"
           )[0].innerHTML = price + "zł";
         }
+        document
+          .getElementsByClassName("basket__heroes")[0]
+          .addEventListener("click", deleteFromBasket, false);
       });
   });
 };
 
-const deleteFromBasket = heroName => {
-  basket.splice(basket.indexOf(heroName), 1);
-  changeHeroIsAvailable(heroName, true);
-  saveToLocalStorage();
-  location.reload();
+const deleteFromBasket = e => {
+  const heroName = e.target.name;
+  if (heroName) {
+    basket.splice(basket.indexOf(heroName), 1);
+    changeHeroIsAvailable(heroName, true);
+    saveToLocalStorage();
+    location.reload();
+  }
 };
 
 loadFromLocalStorage();
@@ -355,4 +377,23 @@ if (basket) {
   basket = [];
   showHeroes();
 }
-document.getElementsByClassName("heroes")[0].addEventListener("click",openModal,false);
+
+document
+  .getElementsByClassName("navigation__link")[0]
+  .addEventListener("click", openAddHero);
+
+document
+  .getElementsByClassName("navigation__link")[1]
+  .addEventListener("click", openEditHero);
+
+document
+  .getElementsByClassName("navigation__link")[2]
+  .addEventListener("click", openDeleteHero);
+
+document
+  .getElementsByClassName("navigation__link")[3]
+  .addEventListener("click", openDeleteHeroes);
+
+document
+  .getElementsByClassName("heroes")[0]
+  .addEventListener("click", openModal, false);

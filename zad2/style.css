@@ -387,7 +387,11 @@ outline: none;
     height: 5vh;
     align-self: center;
     margin-top: 2%;
-    cursor: pointer;
+  
+}
+
+.modal__submit--click {
+  cursor: pointer;
 }
 
 .modal__submit--disabled {
