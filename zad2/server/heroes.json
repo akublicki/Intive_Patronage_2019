@@ -11,8 +11,8 @@
       "name": "SpongeBob",
       "description": "SpongeBob Kanciastoporty energiczna i pozytywnie nastawiona do świata gąbka morska z wyglądu przypominająca gąbkę kuchenną",
       "image": "https://www.stockwerk.co.at/wp-content/uploads/2015/02/SPONGEBOB.jpg",
-      "price": "539",
-      "isAvailable": true
+      "price": "538",
+      "isAvailable": false
     },
     {
       "name": "Świnka Peppa",

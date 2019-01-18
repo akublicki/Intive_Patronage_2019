@@ -145,7 +145,7 @@ const openEditHero = () => {
 const changeHero = () => {
   const element = document.getElementsByClassName("editHero__select")[0];
   const heroName = element.options[element.selectedIndex].value;
-  const url = "http://localhost:3000/heroes/" + heroName;
+  const url = `http://localhost:3000/heroes/${heroName}`;
   fetch(url)
     .then(response => response.json())
     .then(hero => {
@@ -164,7 +164,7 @@ const changeHero = () => {
 const editHero = () => {
   const element = document.getElementsByClassName("editHero__select")[0];
   const heroName = element.options[element.selectedIndex].value;
-  const url = "http://localhost:3000/heroes/" + heroName;
+  const url = `http://localhost:3000/heroes/${heroName}`;
   const hero = {
     name: heroName,
     description: document.getElementsByClassName(
@@ -216,9 +216,7 @@ const openDeleteHero = () => {
 
 const deleteHero = () => {
   const element = document.getElementsByClassName("deleteHero__select")[0];
-  const url =
-    "http://localhost:3000/heroes/" +
-    element.options[element.selectedIndex].value;
+  const url =`http://localhost:3000/heroes/${element.options[element.selectedIndex].value}`;
   fetch(url, {
     method: "DELETE",
     headers: {
@@ -275,7 +273,7 @@ const loadFromLocalStorage = () => {
 const openModal = e => {
   const heroName = e.target.id;
   if (e.target.id) {
-    const url = "http://localhost:3000/heroes/" + heroName;
+    const url = `http://localhost:3000/heroes/${heroName}`;
     fetch(url)
       .then(response => response.json())
       .then(hero => {
@@ -331,7 +329,7 @@ const addToBasket = e => {
 };
 
 const changeHeroIsAvailable = (heroName, status) => {
-  const url = "http://localhost:3000/heroes/" + heroName;
+  const url = `http://localhost:3000/heroes/${heroName}`;
   const hero = {
     name: heroName,
     isAvailable: status
@@ -435,10 +433,6 @@ document
 document
   .getElementsByClassName("navigation__link")[3]
   .addEventListener("click", openDeleteHeroes);
-
-document
-  .getElementsByClassName("heroes")[0]
-  .addEventListener("click", openModal, false);
 
 document
   .getElementsByClassName("heroes")[0]
