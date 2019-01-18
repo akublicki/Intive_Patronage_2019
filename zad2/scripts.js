@@ -6,10 +6,8 @@ const openMobileNav = () => {
     .getElementsByClassName("mobileNavigation")[0]
     .classList.toggle("change");
   document
-    .getElementsByClassName("header__navigation")[0]
-    .classList.toggle("header__navigation--show");
-  document.getElementsByClassName("header__navigation")[0].style.transition =
-    "1.2s";
+    .getElementsByClassName("header__navigationMobile")[0]
+    .classList.toggle("header__navigationMobile--show");
 };
 
 const hideLoader = () => {
@@ -407,6 +405,22 @@ document
   .addEventListener("click", openMobileNav);
 
 document
+  .getElementsByClassName("navigationMobile__link")[0]
+  .addEventListener("click", openAddHero);
+
+document
+  .getElementsByClassName("navigationMobile__link")[1]
+  .addEventListener("click", openEditHero);
+
+document
+  .getElementsByClassName("navigationMobile__link")[2]
+  .addEventListener("click", openDeleteHero);
+
+document
+  .getElementsByClassName("navigationMobile__link")[3]
+  .addEventListener("click", openDeleteHeroes);
+
+document
   .getElementsByClassName("navigation__link")[0]
   .addEventListener("click", openAddHero);
 
@@ -421,6 +435,10 @@ document
 document
   .getElementsByClassName("navigation__link")[3]
   .addEventListener("click", openDeleteHeroes);
+
+document
+  .getElementsByClassName("heroes")[0]
+  .addEventListener("click", openModal, false);
 
 document
   .getElementsByClassName("heroes")[0]

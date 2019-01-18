@@ -34,7 +34,9 @@ body {
   z-index: 1;
 }
 
-.mobileNavigation__bar1, .mobileNavigation__bar2, .mobileNavigation__bar3 {
+.mobileNavigation__bar1,
+.mobileNavigation__bar2,
+.mobileNavigation__bar3 {
   width: 35px;
   height: 5px;
   background-color: white;
@@ -46,10 +48,31 @@ body {
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
-.change .mobileNavigation__bar2 {opacity: 0;}
+.change .mobileNavigation__bar2 {
+  opacity: 0;
+}
 
 .change .mobileNavigation__bar3 {
   transform: rotate(45deg) translate(-8px, -8px);
+}
+
+.header__navigationMobile {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  list-style-type: none;
+}
+
+.navigationMobile__link {
+  display: inline-block;
+  color: white;
+  padding: 0 8px;
+  border-right: 1px white solid;
+  cursor: pointer;
+}
+
+.navigationMobile__link--noneBorder {
+  border: 0;
 }
 
 .header__navigation {
@@ -109,7 +132,7 @@ main {
 }
 
 .basket__price--colorRed {
-  color: #CB0A05;
+  color: #cb0a05;
 }
 
 .basket__heroes {
@@ -120,7 +143,7 @@ main {
   justify-content: center;
 }
 
-.basket__empty{
+.basket__empty {
   margin: 2%;
 }
 
@@ -147,7 +170,7 @@ main {
 }
 
 .basket__buttonDelete {
-  background: #CB0A05;
+  background: #cb0a05;
   color: white;
   height: 2rem;
   cursor: pointer;
@@ -169,7 +192,7 @@ main {
 }
 
 .hero__image {
-    width: 100%;
+  width: 100%;
 }
 
 .hero__click {
@@ -177,35 +200,35 @@ main {
   width: 100%;
   height: 100%;
   top: 0;
-  left:0;
+  left: 0;
 }
 
 .addHero {
-    width: 60%;
-    margin: 5%;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 5px 5px 5px gray;
+  width: 60%;
+  margin: 5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 5px 5px 5px gray;
 }
 
 .addHero__input {
-    margin: 5% auto;
-    border: 0;
-    border-bottom: 2px grey solid;
-    color: black;
-    width: 60%;
-    font-size: 1em;
+  margin: 5% auto;
+  border: 0;
+  border-bottom: 2px grey solid;
+  color: black;
+  width: 60%;
+  font-size: 1em;
 }
 
 .addHero__input::placeholder {
-    color: grey;
+  color: grey;
 }
 
 .addHero__input:focus {
-    outline: none;
+  outline: none;
 }
 
 .addHero__description {
@@ -213,26 +236,26 @@ main {
 }
 
 .addHero__submit {
-    color: white;
-    background: #5F92C9;
-    border: 1px #5F92C9 solid;
-    outline: 0;
-    width: 25%;
-    height: 5vh;
-    align-self: center;
-    box-shadow: 0 4px 4px 0 gray;
-    cursor: pointer;
+  color: white;
+  background: #5f92c9;
+  border: 1px #5f92c9 solid;
+  outline: 0;
+  width: 25%;
+  height: 5vh;
+  align-self: center;
+  box-shadow: 0 4px 4px 0 gray;
+  cursor: pointer;
 }
 
 .editHero {
-    width: 60%;
-    margin: 5%;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 5px 5px 5px gray;
+  width: 60%;
+  margin: 5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 5px 5px 5px gray;
 }
 
 .editHero__label {
@@ -242,94 +265,94 @@ main {
   text-align: left;
 }
 
-.editHero__select{
-    margin: 0 auto 5% auto;
-    border: 0;
-    border-bottom: 2px gray solid;
-    width: 60%;
-    background: white;
-    font-size: 1.1em;
+.editHero__select {
+  margin: 0 auto 5% auto;
+  border: 0;
+  border-bottom: 2px gray solid;
+  width: 60%;
+  background: white;
+  font-size: 1.1em;
 }
 
-.editHero__select:focus{
-outline: none;
+.editHero__select:focus {
+  outline: none;
 }
 
-.editHero__input{
-    margin: 0 auto 5% auto;
-    border: 0;
-    border-bottom: 2px grey solid;
-    color: black;
-    width: 60%;
-    font-size: 1em;
+.editHero__input {
+  margin: 0 auto 5% auto;
+  border: 0;
+  border-bottom: 2px grey solid;
+  color: black;
+  width: 60%;
+  font-size: 1em;
 }
 
-.editHero__input::placeholder{
-    color: grey;
+.editHero__input::placeholder {
+  color: grey;
 }
 
-.editHero__input:focus{
-    outline: none;
+.editHero__input:focus {
+  outline: none;
 }
 
-.editHero__description{
+.editHero__description {
   font-family: inherit;
   height: 12vh;
 }
 
-.editHero__submit{
-    color: white;
-    background: #5F92C9;
-    border: 1px #5F92C9 solid;
-    outline: 0;
-    width: 25%;
-    height: 5vh;
-    align-self: center;
-    box-shadow: 0 4px 4px 0 gray;
-    cursor: pointer;
+.editHero__submit {
+  color: white;
+  background: #5f92c9;
+  border: 1px #5f92c9 solid;
+  outline: 0;
+  width: 25%;
+  height: 5vh;
+  align-self: center;
+  box-shadow: 0 4px 4px 0 gray;
+  cursor: pointer;
 }
 
-.deleteHero{
-    width: 60%;
-    margin: 5%;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 5px 5px 5px gray;
+.deleteHero {
+  width: 60%;
+  margin: 5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 5px 5px 5px gray;
 }
 
-.deleteHero__label{
+.deleteHero__label {
   color: grey;
   width: 60%;
   margin: 0 auto;
   text-align: left;
 }
 
-.deleteHero__select{
-    margin: 0 auto 5% auto;
-    border: 0;
-    border-bottom: 2px gray solid;
-    width: 60%;
-    background: white;
-    font-size: 1.1em;
+.deleteHero__select {
+  margin: 0 auto 5% auto;
+  border: 0;
+  border-bottom: 2px gray solid;
+  width: 60%;
+  background: white;
+  font-size: 1.1em;
 }
 
-.deleteHero__select:focus{
-outline: none;
+.deleteHero__select:focus {
+  outline: none;
 }
 
-.deleteHero__submit{
-    color: white;
-    background: #5F92C9;
-    border: 1px #5F92C9 solid;
-    outline: 0;
-    width: 25%;
-    height: 5vh;
-    align-self: center;
-    box-shadow: 0 4px 4px 0 gray;
-    cursor: pointer;
+.deleteHero__submit {
+  color: white;
+  background: #5f92c9;
+  border: 1px #5f92c9 solid;
+  outline: 0;
+  width: 25%;
+  height: 5vh;
+  align-self: center;
+  box-shadow: 0 4px 4px 0 gray;
+  cursor: pointer;
 }
 
 .modal {
@@ -380,13 +403,13 @@ outline: none;
 }
 
 .modal__submit {
-    color: white;
-    background: #00AA54;
-    border: 1px #00AA54 solid;
-    outline: 0;
-    height: 5vh;
-    align-self: center;
-    margin-top: 2%;
+  color: white;
+  background: #00aa54;
+  border: 1px #00aa54 solid;
+  outline: 0;
+  height: 5vh;
+  align-self: center;
+  margin-top: 2%;
 }
 
 .modal__submit--click {
@@ -394,8 +417,8 @@ outline: none;
 }
 
 .modal__submit--disabled {
-    background: #CB0A05;
-    border: 1px #CB0A05 solid;
+  background: #cb0a05;
+  border: 1px #cb0a05 solid;
 }
 
 .modal__close {
@@ -418,12 +441,16 @@ outline: none;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media screen and (max-width: 760px) {
-    .header__logo{
+  .header__logo {
     width: 30%;
   }
 
@@ -432,26 +459,30 @@ outline: none;
   }
 
   .header__navigation {
-    background:rgba(0, 0, 0, 0.8);
+    display: none;
+  }
+
+  .header__navigationMobile {
+    background: rgba(0, 0, 0, 0.8);
     width: 100%;
     margin: 0;
     right: 0;
     text-align: center;
     top: -350px;
-    /* transition: 1.2s; */
+    transition: 1.2s;
   }
 
-  .header__navigation--show {
+  .header__navigationMobile--show {
     top: 0;
     transition: 1.2s;
   }
 
-  .navigation__link {
+  .navigationMobile__link {
     display: block;
     font-size: 1.8em;
     border: 0;
     margin: 3% 0;
-}
+  }
   .hero {
     width: 100%;
   }
@@ -462,7 +493,7 @@ outline: none;
 }
 
 @media screen and (min-width: 761px) and (max-width: 1024px) {
-  .header__logo{
+  .header__logo {
     width: 30%;
   }
 
@@ -470,10 +501,22 @@ outline: none;
     width: 48%;
   }
 
+  .mobileNavigation {
+    display: none;
+  }
+
+  .header__navigationMobile {
+    display: none;
+  }
+
+  .header__navigation {
+    display: block;
+  }
+
   .navigation__link {
     padding: 0 6px;
     font-size: 0.8em;
-}
+  }
 
   .basket__hero {
     width: 50%;
