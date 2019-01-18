@@ -68,7 +68,11 @@ body {
   color: white;
   padding: 0 8px;
   border-right: 1px white solid;
-  cursor: pointer;
+
+}
+
+.navigationMobile__link--cursor {
+    cursor: pointer;
 }
 
 .navigationMobile__link--noneBorder {
@@ -87,7 +91,10 @@ body {
   color: white;
   padding: 0 8px;
   border-right: 1px white solid;
-  cursor: pointer;
+}
+
+.navigation__link--cursor {
+    cursor: pointer;
 }
 
 .navigation__link--noneBorder {

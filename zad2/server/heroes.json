@@ -5,21 +5,21 @@
       "description": "Pies",
       "image": "https://sklep.selected.pl/images/obrazki_przedmiotow/ODJAZDOWE/mini/500px_REKSIO%201.png",
       "price": "465",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "SpongeBob",
       "description": "SpongeBob Kanciastoporty energiczna i pozytywnie nastawiona do świata gąbka morska z wyglądu przypominająca gąbkę kuchenną",
       "image": "https://www.stockwerk.co.at/wp-content/uploads/2015/02/SPONGEBOB.jpg",
       "price": "538",
-      "isAvailable": false
+      "isAvailable": true
     },
     {
       "name": "Świnka Peppa",
       "description": "Różowa świnka",
       "image": "https://www.miniminiplus.pl/img/postacie/peppa.png",
       "price": "3",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "Batman",
@@ -33,7 +33,7 @@
       "description": "Ojciec wszystkich smerfów",
       "image": "https://edu.glogster.com/library/proxy?url=http%3A%2F%2Fwww.smerfy.net%2Fimg%2Fgaleria%2Fobrazki_smerfy_1.gif",
       "price": "623975",
-      "isAvailable": true
+      "isAvailable": false
     },
     {
       "name": "Wolverine",
