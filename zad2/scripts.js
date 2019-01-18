@@ -1,16 +1,15 @@
 const modal = document.getElementsByClassName("modal")[0];
-let heroes = {};
 let basket = [];
 
-const openMobileNav = x => {
-  x.classList.toggle("change");
+const openMobileNav = () => {
+  document
+    .getElementsByClassName("mobileNavigation")[0]
+    .classList.toggle("change");
   document
     .getElementsByClassName("header__navigation")[0]
     .classList.toggle("header__navigation--show");
-};
-
-const showLoader = () => {
-  document.getElementsByClassName("loader")[0].style.display = "block";
+  document
+    .getElementsByClassName("header__navigation")[0].style.transition = "1.2s"
 };
 
 const hideLoader = () => {
@@ -18,11 +17,7 @@ const hideLoader = () => {
 };
 
 const showMain = () => {
-  document.getElementsByTagName("main")[0].style.display = "block";
-};
-
-const hideMain = () => {
-  document.getElementsByTagName("main")[0].style.display = "none";
+  document.getElementsByTagName("main")[0].style.display = "flex";
 };
 
 const openAddHero = () => {
@@ -82,8 +77,10 @@ const addHero = () => {
       headers: {
         "Content-Type": "application/json"
       }
-    });
-    location.reload();
+    })
+      .then(response => {
+        location.reload();
+      });
   }
 };
 
@@ -164,8 +161,10 @@ const editHero = () => {
     method: "PUT",
     body: JSON.stringify(hero),
     headers: { "Content-Type": "application/json" }
+  })
+  .then(response => {
+    location.reload();
   });
-  location.reload();
 };
 
 const openDeleteHero = () => {
@@ -208,8 +207,10 @@ const deleteHero = () => {
     headers: {
       "Content-Type": "application/json"
     }
+  })
+  .then(response => {
+    location.reload();
   });
-  location.reload();
 };
 
 const openDeleteHeroes = () => {
@@ -220,8 +221,10 @@ const openDeleteHeroes = () => {
       headers: {
         "Content-Type": "application/json"
       }
+    })
+    .then(response => {
+      location.reload();
     });
-    location.reload();
   }
 };
 
@@ -240,6 +243,8 @@ const showHeroes = () => {
           </div>`;
       }
       document.getElementsByClassName("heroes")[0].innerHTML = template;
+      showMain();
+      hideLoader();
     });
 };
 
@@ -377,6 +382,10 @@ if (basket) {
   basket = [];
   showHeroes();
 }
+
+document
+  .getElementsByClassName("mobileNavigation")[0]
+  .addEventListener("click", openMobileNav);
 
 document
   .getElementsByClassName("navigation__link")[0]

@@ -86,7 +86,7 @@ body {
 main {
   width: 80%;
   margin-left: 10%;
-  display: flex;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
@@ -387,7 +387,6 @@ outline: none;
     height: 5vh;
     align-self: center;
     margin-top: 2%;
-  
 }
 
 .modal__submit--click {
@@ -439,7 +438,7 @@ outline: none;
     right: 0;
     text-align: center;
     top: -350px;
-    transition: 1.2s;
+    /* transition: 1.2s; */
   }
 
   .header__navigation--show {
