@@ -8,8 +8,8 @@ const openMobileNav = () => {
   document
     .getElementsByClassName("header__navigation")[0]
     .classList.toggle("header__navigation--show");
-  document
-    .getElementsByClassName("header__navigation")[0].style.transition = "1.2s"
+  document.getElementsByClassName("header__navigation")[0].style.transition =
+    "1.2s";
 };
 
 const hideLoader = () => {
@@ -56,32 +56,52 @@ const openAddHero = () => {
       </form>`;
   document
     .getElementsByClassName("addHero__submit")[0]
-    .addEventListener("click", addHero);
+    .addEventListener("click", isHeroExist);
 };
 
-const addHero = () => {
-  const url = "http://localhost:3000/heroes";
-  const addHeroName = document.getElementsByClassName("addHero__name")[0].value;
-  if (addHeroName) {
-    const hero = {
-      name: addHeroName,
-      description: document.getElementsByClassName("addHero__description")[0]
-        .value,
-      image: document.getElementsByClassName("addHero__image")[0].value,
-      price: document.getElementsByClassName("addHero__price")[0].value,
-      isAvailable: true
-    };
-    fetch(url, {
-      method: "POST",
-      body: JSON.stringify(hero),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+const isHeroExist = () => {
+  const heroName = document.getElementsByClassName("addHero__name")[0].value;
+  if (heroName) {
+    const url = "http://localhost:3000/heroes";
+    let heroExist = 0;
+    fetch(url)
+      .then(response => response.json())
       .then(response => {
-        location.reload();
+        for (hero in response) {
+          if (response[hero].name == heroName) {
+            heroExist = 1;
+          }
+        }
+        if (heroExist) {
+          alert(`${heroName} już istnieje`);
+        } else {
+          addHero(heroName);
+        }
       });
+  } else {
+    alert("Musisz wpisać nazwę bohatera");
   }
+};
+
+const addHero = addHeroName => {
+  const url = "http://localhost:3000/heroes";
+  const hero = {
+    name: addHeroName,
+    description: document.getElementsByClassName("addHero__description")[0]
+      .value,
+    image: document.getElementsByClassName("addHero__image")[0].value,
+    price: document.getElementsByClassName("addHero__price")[0].value,
+    isAvailable: true
+  };
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(hero),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(response => {
+    location.reload();
+  });
 };
 
 const openEditHero = () => {
@@ -161,8 +181,7 @@ const editHero = () => {
     method: "PUT",
     body: JSON.stringify(hero),
     headers: { "Content-Type": "application/json" }
-  })
-  .then(response => {
+  }).then(response => {
     location.reload();
   });
 };
@@ -207,8 +226,7 @@ const deleteHero = () => {
     headers: {
       "Content-Type": "application/json"
     }
-  })
-  .then(response => {
+  }).then(response => {
     location.reload();
   });
 };
@@ -221,8 +239,7 @@ const openDeleteHeroes = () => {
       headers: {
         "Content-Type": "application/json"
       }
-    })
-    .then(response => {
+    }).then(response => {
       location.reload();
     });
   }
@@ -276,7 +293,9 @@ const openModal = e => {
         <div class="modal__price">WYNAJEM: ${hero.price} ZŁ/H</div>`;
         if (hero.isAvailable) {
           template += `
-          <button class="modal__submit modal__submit--click" name="${hero.name}">
+          <button class="modal__submit modal__submit--click" name="${
+            hero.name
+          }">
             DODAJ DO KOSZYKA
           </button>`;
         } else {

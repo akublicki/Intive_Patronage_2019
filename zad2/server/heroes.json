@@ -1,45 +1,52 @@
 {
   "heroes": [
     {
-      "name": "Spongebob",
-      "description": "Pan gąbka",
-      "image": "https://i.pinimg.com/originals/df/f4/76/dff476e668e295d60ed58a9d6011d799.jpg",
-      "price": "5",
+      "name": "Reksio",
+      "description": "Pies",
+      "image": "https://sklep.selected.pl/images/obrazki_przedmiotow/ODJAZDOWE/mini/500px_REKSIO%201.png",
+      "price": "465",
       "isAvailable": true
     },
     {
-      "name": "Papa Smerf",
-      "description": "Ojciec wszystkich Smerfów",
-      "image": "https://i.ytimg.com/vi/40Lw8zA9zAU/hqdefault.jpg",
-      "price": "501",
-      "isAvailable": false
-    },
-    {
-      "name": "Punisher",
-      "description": "Punisher",
-      "image": "https://m.media-amazon.com/images/M/MV5BMjI5NjcwMTQxMV5BMl5BanBnXkFtZTcwODg5ODkwNQ@@._V1_.jpg",
-      "price": "25",
+      "name": "SpongeBob",
+      "description": "SpongeBob Kanciastoporty energiczna i pozytywnie nastawiona do świata gąbka morska z wyglądu przypominająca gąbkę kuchenną",
+      "image": "https://www.stockwerk.co.at/wp-content/uploads/2015/02/SPONGEBOB.jpg",
+      "price": "539",
       "isAvailable": true
     },
     {
       "name": "Świnka Peppa",
       "description": "Różowa świnka",
       "image": "https://www.miniminiplus.pl/img/postacie/peppa.png",
-      "price": "7",
+      "price": "3",
       "isAvailable": true
     },
     {
       "name": "Batman",
-      "description": "Batman2222",
+      "description": "alter ego – Bruce Wayne – fikcyjna postać (superbohater) znana z licznych serii komiksowych, wydawanych przez DC Comics, oraz z różnych adaptacji związanych z tą postacią",
       "image": "https://upload.wikimedia.org/wikipedia/en/8/87/Batman_DC_Comics.png",
-      "price": "325",
+      "price": "1000023",
       "isAvailable": true
     },
     {
-      "name": "Superman",
-      "description": "Clark Kent",
-      "image": "https://www.sideshowtoy.com/assets/products/903305-super-powers-superman/lg/dc-comics-superman-maquette-tweeterhead-903305-07.jpg",
-      "price": "10000",
+      "name": "Papa Smerf",
+      "description": "Ojciec wszystkich smerfów",
+      "image": "https://edu.glogster.com/library/proxy?url=http%3A%2F%2Fwww.smerfy.net%2Fimg%2Fgaleria%2Fobrazki_smerfy_1.gif",
+      "price": "623975",
+      "isAvailable": true
+    },
+    {
+      "name": "Wolverine",
+      "description": "James Howlett",
+      "image": "https://i.ytimg.com/vi/zdkytyJj5xs/maxresdefault.jpg",
+      "price": "9854",
+      "isAvailable": true
+    },
+    {
+      "name": "Buli",
+      "description": "Bałwanek",
+      "image": "https://www.wykop.pl/cdn/c3201142/comment_zbOJXcXpUxkJGBkTShHFG8JWTIzJyEU7.jpg",
+      "price": "0.5",
       "isAvailable": true
     }
   ]
