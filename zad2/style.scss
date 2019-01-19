@@ -1,0 +1,432 @@
+$myRed: #cb0a05;
+$myBlue: #5f92c9;
+$myGreen: #00aa54;
+
+@mixin bar {
+  width: 35px;
+  height: 5px;
+  background-color: white;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+@mixin navigation {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  list-style-type: none;
+}
+
+@mixin navigationLink {
+  display: inline-block;
+  color: white;
+  padding: 0 8px;
+  border-right: 1px white solid;
+  &--cursor {
+    cursor: pointer;
+  }
+  &--noneBorder {
+    border: 0;
+  }
+}
+
+@mixin formDisplay {
+  width: 60%;
+  margin: 5%;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 5px 5px 5px gray;
+  &__input {
+    margin: 5% auto;
+    border: 0;
+    border-bottom: 2px grey solid;
+    color: black;
+    width: 60%;
+    font-size: 1em;
+    &::placeholder {
+      color: grey;
+    }
+  }
+  &__description {
+    font-family: inherit;
+  }
+  &__submit {
+    color: white;
+    background: $myBlue;
+    border: 1px $myBlue solid;
+    outline: 0;
+    width: 25%;
+    height: 5vh;
+    align-self: center;
+    box-shadow: 0 4px 4px 0 gray;
+    cursor: pointer;
+  }
+}
+
+@mixin formLabel {
+  &__label {
+    color: grey;
+    width: 60%;
+    margin: 0 auto;
+    text-align: left;
+  }
+  &__select {
+    margin: 0 auto 5% auto;
+    border: 0;
+    border-bottom: 2px gray solid;
+    width: 60%;
+    background: white;
+    font-size: 1.1em;
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+@mixin displayFlex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  font-family: "Open Sans", sans-serif;
+}
+
+.header {
+  width: 100%;
+  &__image {
+    width: 100%;
+  }
+  &__logo {
+    position: absolute;
+    left: 10px;
+    top: 0;
+  }
+  &__navigationMobile {
+    @include navigation;
+  }
+  &__navigation {
+    @include navigation;
+  }
+}
+
+.mobileNavigation {
+  display: none;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+  &__bar1 {
+    @include bar;
+  }
+  &__bar2 {
+    @include bar;
+  }
+  &__bar3 {
+    @include bar;
+  }
+}
+
+.change .mobileNavigation {
+  &__bar1 {
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  &__bar2 {
+    opacity: 0;
+  }
+  &__bar3 {
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+  .header__navigationMobile {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    list-style-type: none;
+  }
+}
+
+.navigationMobile__link {
+  @include navigationLink;
+}
+
+.navigation__link {
+  @include navigationLink;
+}
+
+.footer {
+  position: relative;
+  width: 100%;
+  height: 70px;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #261d52;
+  color: white;
+}
+
+main {
+  width: 80%;
+  margin-left: 10%;
+  @extend .heroes;
+  display: none;
+}
+
+.basket {
+  width: 100%;
+  border: 1px solid gray;
+  margin: 1%;
+  &__label {
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__title {
+    border-bottom: 1px solid gray;
+  }
+  &__price--colorRed {
+    color: $myRed;
+  }
+  &__heroes {
+    width: 100%;
+    @extend .heroes;
+  }
+  &__empty {
+    margin: 2%;
+  }
+  &__hero {
+    width: 33%;
+    @include displayFlex;
+    background: white;
+    &--width40 {
+      width: 30%;
+      margin: 4%;
+    }
+    &--width60 {
+      width: 50%;
+      margin: 4%;
+    }
+  }
+  &__heroImage {
+    width: 100%;
+  }
+  &__buttonDelete {
+    background: $myRed;
+    color: white;
+    height: 2rem;
+    cursor: pointer;
+  }
+}
+
+.heroes {
+  @include displayFlex;
+  justify-content: center;
+}
+
+.hero {
+  width: 31%;
+  margin: 4% 1%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  &__image {
+    width: 100%;
+  }
+  &__click {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+.addHero {
+  @include formDisplay;
+  &__input:focus {
+    outline: none;
+  }
+}
+
+.editHero {
+  @include formDisplay;
+  @include formLabel;
+  &__input:focus {
+    outline: none;
+  }
+}
+
+.deleteHero {
+  @include formDisplay;
+  @include formLabel;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  &__container {
+    background: white;
+    padding: 2%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+  }
+  &__image {
+    width: 40%;
+    img {
+      width: 100%;
+    }
+  }
+  &__information {
+    width: 60%;
+    padding: 0 3%;
+  }
+  &__name {
+    margin-top: 0;
+  }
+  &__price {
+    border: 1px dashed grey;
+    border-left: 0;
+    border-right: 0;
+    width: 50%;
+    margin-top: 2%;
+  }
+  &__submit {
+    color: white;
+    background: $myGreen;
+    border: 1px $myGreen solid;
+    outline: 0;
+    height: 5vh;
+    align-self: center;
+    margin-top: 2%;
+    &--click {
+      cursor: pointer;
+    }
+    &--disabled {
+      background: $myRed;
+      border: 1px $myRed solid;
+    }
+  }
+  &__close {
+    position: absolute;
+    right: 5px;
+    top: 0;
+    font-size: 2em;
+    color: gray;
+    cursor: pointer;
+  }
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid $myBlue;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  margin: 10% auto;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .header {
+    &__logo {
+      width: 30%;
+    }
+    &__navigation {
+      display: none;
+    }
+    &__navigationMobile {
+      background: rgba(0, 0, 0, 0.8);
+      width: 100%;
+      margin: 0;
+      right: 0;
+      text-align: center;
+      top: -350px;
+      transition: 1.2s;
+      &--show {
+        top: 0;
+        transition: 1.2s;
+      }
+    }
+  }
+
+  .mobileNavigation {
+    display: inline-block;
+  }
+
+  .navigationMobile__link {
+    display: block;
+    font-size: 1.8em;
+    border: 0;
+    margin: 3% 0;
+  }
+  .hero {
+    width: 100%;
+  }
+
+  .basket__hero {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 761px) and (max-width: 1024px) {
+  .header {
+    &__logo {
+      width: 30%;
+    }
+    &__navigationMobile {
+      display: none;
+    }
+    &__navigation {
+      display: block;
+    }
+  }
+
+  .hero {
+    width: 48%;
+  }
+
+  .mobileNavigation {
+    display: none;
+  }
+
+  .navigation__link {
+    padding: 0 6px;
+    font-size: 0.8em;
+  }
+
+  .basket__hero {
+    width: 50%;
+  }
+}
